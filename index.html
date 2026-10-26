@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta property="og:title" content="이주한 ♥ 오하린 결혼식에 초대합니다">
+<meta property="og:description" content="2027.12.18(토) 오후 5시 30분 ·<br>더채플앳논현 6F 라포레홀">
+<meta property="og:image" content="assets/BOM00122.jpg">
+<meta property="og:url" content="https://juhanharinwedding.netlify.app/">
+<meta property="og:type" content="website">
+<title>이주한 · 오하린 결혼합니다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Serif+KR:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  /* =====================================================================
+     0. 기본 설정 — 색상·글씨체 변수, 리셋, 본문
+     ===================================================================== */
+  :root{
+    --bg:#FBFAF7;
+    --ink:#22231F;
+    --ink-soft:#5B5D53;
+    --line:#E3DFD2;
+    --accent:#3F4A3E;
+    --accent-soft:#EBEEE5;
+    --night:#141419;
+    --night-text:#F3F1EA;
+    --night-line:rgba(243,241,234,.16);
+    --gold:#C9A961;
+
+    /* 글씨체: 한국어 = Noto Serif KR / 영어 = Cormorant Garamond (한글이 섞이면 Noto Serif KR로 대체) */
+    --font-ko:'Noto Serif KR', serif;
+    --font-en:'Cormorant Garamond','Noto Serif KR', serif;
+    --font-script:'Pinyon Script','Noto Serif KR', cursive;   /* 장식용 필기체 */
+
+    color-scheme: light;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:inherit;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth;}
+  html,body{height:100%; margin:0;}
+  html.intro-lock, body.intro-lock{overflow:hidden;}   /* 오프닝이 끝날 때까지 스크롤 잠금 */
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:var(--font-ko);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    font-weight:400;
+  }
+  body.lang-en{font-family:var(--font-en);}
+  button, input, select, textarea{font-family:inherit;}   /* 버튼·입력칸은 기본값이 본문 글씨체를 안 따라와서 */
+  img{max-width:100%; display:block;}
+  .wrap{max-width:520px; margin:0 auto; position:relative;}
+  section{position:relative;}
+  .center{text-align:center;}
+
+  /* 언어 전환용 도우미 클래스: 한국어/영어 문구 중 현재 언어만 보이게 함
+     (-block 은 줄 단위 요소 p, div, h2 에, -inline 은 글자 단위 요소 span 에 사용) */
+  .ko-block{display:block;}
+  .en-block{display:none;}
+  .ko-inline{display:inline;}
+  .en-inline{display:none;}
+  body.lang-en .ko-block{display:none;}
+  body.lang-en .en-block{display:block;}
+  body.lang-en .ko-inline{display:none;}
+  body.lang-en .en-inline{display:inline;}
+
+  /* =====================================================================
+     1. 공통 부품 — 여러 섹션에서 같이 쓰는 것
+     ===================================================================== */
+  /* 섹션 여백 */
+  .pad{padding:88px 32px;}
+  .pad-sm{padding:56px 32px;}
+
+  /* 섹션 머리말 (◆ Invitation ◆ 같은 필기체 라벨) */
+  .section-heading{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    margin:0 0 26px;
+  }
+  .section-heading .heading-line{
+    width:50px; height:1px;
+    background:linear-gradient(90deg, transparent, var(--line));
+    position:relative;
+  }
+  .section-heading .heading-line::after{
+    content:''; position:absolute; top:50%; right:-7px;
+    width:5px; height:5px; background:var(--gold);
+    transform:translateY(-50%) rotate(45deg);
+  }
+  .section-heading .heading-line:last-child{
+    background:linear-gradient(90deg, var(--line), transparent);
+  }
+  .section-heading .heading-line:last-child::after{
+    right:auto; left:-7px;
+  }
+  .section-heading .heading-label{
+    font-family:var(--font-script); font-style:italic; font-size:20px; font-weight:600;
+    letter-spacing:.04em; color:var(--gold);
+  }
+
+  /* 섹션 제목 (h2) — 보이기/숨기기는 .ko-block / .en-block 이 담당 */
+  h2.title{font-weight:600; font-size:22px; margin:0 0 28px; letter-spacing:-.01em;}
+  body.lang-en h2.title{font-size:28px; font-style:italic;}
+
+  /* 안내 문구 (참석 여부·하객 스냅 공통) */
+  .desc{font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin:8px 0 22px;}
+  body.lang-en .desc{font-size:18px;}
+
+  /* 버튼 */
+  .btn-primary{
+    display:inline-block; background:var(--ink); color:#fff; border:none; border-radius:999px;
+    padding:14px 34px; font-size:14px; font-weight:500; cursor:pointer; text-decoration:none;
+  }
+  .btn-primary:disabled, .btn-primary.disabled{background:#d8d5c9; color:#8a8778; cursor:default;}
+
+  /* 상단 고정 언어 전환 버튼 */
+  .lang-switch{
+    position:fixed; top:calc(env(safe-area-inset-top,0px) + 16px); right:16px; z-index:500;
+    display:flex; background:rgba(251,250,247,.86); backdrop-filter:blur(6px);
+    border:1px solid var(--line); border-radius:999px; padding:3px; gap:2px;
+    box-shadow:0 2px 10px rgba(20,20,20,.06);
+  }
+  .lang-switch button{
+    font-size:13px; letter-spacing:.06em;
+    border:none; background:transparent; color:var(--ink-soft); padding:6px 12px;
+    border-radius:999px; cursor:pointer; font-weight:600;
+  }
+  .lang-switch button.active{background:var(--ink); color:#fff;}
+  /* 배경 음악 버튼: 언어 버튼과 같은 모양으로 왼쪽 위에 */
+  .bgm-switch{right:auto; left:16px;}
+  .bgm-switch button{display:flex; align-items:center; justify-content:center; width:34px; padding:6px 0;}
+  .bgm-switch svg{width:16px; height:16px; display:block;}
+  .bgm-switch button.active .bgm-slash{display:none;}   /* 재생 중에는 사선(꺼짐 표시)을 숨김 */
+
+  /* =====================================================================
+     2. HERO — 오프닝 슬라이드쇼 + 표지
+     ===================================================================== */
+  .hero{height:100vh; height:100svh; min-height:560px; position:relative; overflow:hidden; background:#e9e6dd;}
+  .hero-slide{position:absolute; inset:0; opacity:0; transition:opacity 1.4s ease;}
+  .hero-slide.active{opacity:1;}
+  .hero-img{
+    width:100%; height:100%;
+    object-fit:cover; /* 꽉 채우기 */
+    object-position:center center; /* 가로 세로 순서 */
+  }
+  .hero-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,20,20,.05) 0%, rgba(20,20,20,.05) 55%, rgba(20,20,20,.55) 100%);}
+
+  /* 표지 (오프닝이 끝나면 .show 가 붙으면서 나타남) */
+  .cover-layer{
+    position:absolute; inset:0; opacity:0; z-index:5; pointer-events:none;
+    transition:opacity 1.2s ease;
+  }
+  .cover-layer.show{opacity:1; pointer-events:auto;}
+  .cover-photo{
+    position:absolute; inset:0; background:linear-gradient(160deg,#efece3,#dcd7c8);
+    width:100%; height:100%; object-fit:cover;
+    transform:scale(1.08);
+    transition:transform 1.8s cubic-bezier(.16,.8,.24,1);
+  }
+  .cover-layer.show .cover-photo{transform:scale(1);}
+  .cover-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,20,20,.12) 0%, rgba(20,20,20,.08) 45%, rgba(20,20,20,.6) 100%);}
+  .cover-content{position:absolute; left:0; right:0; bottom:0; padding:0 32px 72px; text-align:center; color:#fff;}
+  .cover-names{
+    font-size:30px; font-weight:500; letter-spacing:.02em;
+    margin-bottom:12px; text-shadow:0 2px 14px rgba(0,0,0,.35);
+  }
+  body.lang-en .cover-names{font-style:italic;}
+  .cover-date{
+    font-size:13px; letter-spacing:.08em; color:rgba(255,255,255,.85);
+    text-shadow:0 2px 10px rgba(0,0,0,.3);
+  }
+
+  /* 슬라이드 위 문구 + 점 */
+  .hero-caption{
+    position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); padding:0 32px;
+    color:#fff; text-align:center;
+  }
+  .hero-caption.cap-shift-up{ top: 48%; }
+  .hero-caption p{
+    font-size:22px; line-height:1.55; font-weight:500;
+    margin:0; text-shadow:0 2px 14px rgba(0,0,0,.35); min-height:66px;
+    transition:opacity .6s ease;
+  }
+  .hero-dots{display:flex; gap:6px; justify-content:center; margin-top:16px;}
+  .hero-dots span{
+    width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.45);
+    cursor:pointer; padding:2px; background-clip:content-box; box-sizing:content-box;
+  }
+  .hero-dots span.active{background:#fff;}
+  .scroll-cue{position:absolute; bottom:18px; left:50%; transform:translateX(-50%); width:1px; height:34px; background:rgba(255,255,255,.55);}
+  .scroll-cue::after{content:''; position:absolute; left:-2px; top:0; width:5px; height:5px; border-radius:50%; background:#fff; animation:cue 1.8s ease-in-out infinite;}
+  @keyframes cue{0%{top:0; opacity:1;}90%{opacity:0;}100%{top:28px; opacity:0;}}
+
+  /* =====================================================================
+     3. GREETING — 인사말
+     ===================================================================== */
+  .greeting-headline{
+    font-weight:700; font-size:26px;
+    color:var(--ink); margin:4px 0 30px; line-height:1.4;
+  }
+  body.lang-en .greeting-headline{font-style:italic; font-weight:600; font-size:30px;}
+  .greeting p{
+    font-size:16px; line-height:2.05; color:var(--ink);
+    margin:0 0 4px; font-weight:400;
+  }
+  body.lang-en .greeting p{font-size:19px; line-height:1.85;}
+
+  /* =====================================================================
+     4. NAMES — 혼주 소개
+     ===================================================================== */
+  .hr-soft{width:64px; height:1px; background:var(--line); margin:0 auto 34px;}
+  .family-line{
+    display:flex; align-items:baseline; justify-content:center; flex-wrap:wrap;
+    gap:6px; margin-bottom:16px; font-size:18px; color:var(--ink-soft);
+  }
+  .family-line .fam-own{font-size:22px; font-weight:600; color:var(--ink);}
+  body.lang-en .family-line{font-size:18px; gap:5px;}
+  body.lang-en .family-line .fam-own{font-size:18px;}
+
+  /* =====================================================================
+     5. WEDDING REGISTRY — 안내 문구 + 계좌번호 오버레이
+     ===================================================================== */
+  .registry-note{
+    font-size:13.5px; color:var(--ink-soft); line-height:1.7;
+    margin:-10px auto 26px; max-width:400px;
+  }
+  .btn-registry{
+    display:block; width:fit-content; margin:0 auto; background:#F1F0EC; border:none; border-radius:14px;
+    padding:16px 42px; font-size:15px; font-weight:500; color:var(--ink); cursor:pointer;
+    white-space:nowrap;
+  }
+  .registry-overlay{
+    position:fixed; inset:0; background:rgba(20,19,16,.82); color:var(--night-text);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    z-index:850; display:none; flex-direction:column; overflow-y:auto;
+    padding:calc(env(safe-area-inset-top,0px) + 26px) 26px calc(env(safe-area-inset-bottom,0px) + 40px);
+  }
+  .registry-overlay.show{display:flex;}
+  .registry-close{
+    position:fixed; top:calc(env(safe-area-inset-top,0px) + 18px); right:20px;
+    background:none; border:none; color:var(--night-text); font-size:26px; cursor:pointer; line-height:1;
+  }
+  .registry-title{
+    text-align:center; font-size:32px;
+    display:flex; align-items:center; justify-content:center; gap:14px; margin:16px 0 40px;
+  }
+  body.lang-en .registry-title{font-family:var(--font-script);}   /* 영어 제목만 필기체 (필기체는 한글을 못 그림) */
+  .registry-title .rl{width:28px; height:1px; background:rgba(243,241,234,.35);}
+  .registry-title .ko-inline{font-size:20px;}
+  .registry-side{margin-bottom:40px;}
+  .registry-side-label{
+    font-size:13px; letter-spacing:.08em; color:rgba(243,241,234,.55);
+    border-bottom:1px solid var(--night-line); padding-bottom:10px; margin-bottom:6px;
+  }
+  .registry-acct{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 0; border-bottom:1px solid var(--night-line);
+  }
+  .registry-acct .who{font-size:15px; font-weight:600;}
+  .registry-acct .bank{font-size:12px; color:rgba(243,241,234,.55); margin-top:2px;}
+  body.lang-en .registry-acct .who{font-size:18px;}
+  .registry-acct .num{font-size:14px; letter-spacing:.02em; font-variant-numeric:tabular-nums; margin-top:2px;}
+  body.lang-en .registry-acct .num{font-size:15px;}
+  .copy-icon-btn{background:none; border:none; padding:8px; cursor:pointer; color:rgba(243,241,234,.85);}
+  .copy-icon-btn svg{width:18px; height:18px; display:block;}
+  .copy-icon-btn.copied{color:var(--gold);}
+
+  /* =====================================================================
+     6. GALLERY — 사진 목록 + 확대 보기(라이트박스)
+     ===================================================================== */
+  .gallery-wrap{position:relative;}
+  .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:6px;}
+  .gallery-grid .g-item{aspect-ratio:3/4; overflow:hidden; background:#eeece4; cursor:pointer;}
+  .gallery-grid .g-item img{width:100%; height:100%; object-fit:cover;}
+  .gallery-grid .g-item.g-extra{display:none;}
+  .gallery-grid.expanded .g-item.g-extra{display:block;}
+  .gallery-fade{
+    position:absolute; left:0; right:0; bottom:0; height:90px;
+    background:linear-gradient(to bottom, rgba(251,250,247,0), var(--bg));
+    pointer-events:none;
+  }
+  .gallery-more{
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    width:fit-content; margin:4px auto 0; background:none; border:none;
+    padding:6px 14px; cursor:pointer;
+  }
+  .gallery-more svg{color:var(--ink-soft); animation:moreBounce 1.8s ease-in-out infinite;}
+  .gallery-more span{font-size:12px; letter-spacing:.04em; color:var(--ink-soft);}
+  .gallery-more.hidden{display:none;}
+  @keyframes moreBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+  .lightbox{position:fixed; inset:0; background:rgba(10,10,10,.92); z-index:900; display:none; align-items:center; justify-content:center; padding:24px;}
+  .lightbox.show{display:flex;}
+  .lightbox img{max-height:82vh; border-radius:2px;}
+  .lightbox-close{position:absolute; top:calc(env(safe-area-inset-top,0px) + 18px); right:20px; color:#fff; font-size:28px; background:none; border:none; cursor:pointer; line-height:1;}
+
+  /* =====================================================================
+     7. SAVE THE DATE — 날짜 · 달력 · 카운트다운
+     ===================================================================== */
+  .light{background:var(--bg); color:var(--ink);}
+  .date-big{font-size:44px; font-family:'Noto Serif KR', serif; font-weight:500; margin:0;}
+  .date-sub{font-size:13.5px; font-family:'Noto Serif KR', serif; letter-spacing:.08em; color:var(--ink-soft); margin-top:8px;}
+
+  .calendar{margin:40px auto 0; max-width:320px;}
+  .cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-top:14px;}
+  .cal-dow{font-size:11px; text-align:center; color:var(--ink-soft); opacity:.55; padding-bottom:6px;}
+  .cal-day{
+    aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-family:'Noto Serif KR', serif; color:var(--ink-soft); border-radius:50%; font-variant-numeric:tabular-nums;
+  }
+  .cal-day.empty{visibility:hidden;}
+  .cal-day.dday{background:var(--gold); color:#fff; font-weight:700; position:relative;}
+
+  .countdown{display:flex; justify-content:center; gap:14px; margin-top:44px;}
+  .cd-unit{text-align:center; min-width:56px;}
+  .cd-num{font-size:32px; font-family:'Noto Serif KR', serif; color:var(--gold); font-variant-numeric:tabular-nums; line-height:1;}
+  .cd-label{font-size:10.5px; font-family:'Noto Serif KR', serif; letter-spacing:.1em; color:var(--ink-soft); margin-top:8px;}
+  .cd-colon{font-size:26px; font-family:'Noto Serif KR', serif; color:var(--line); align-self:flex-start; margin-top:2px;}
+
+  /* =====================================================================
+     8. LOCATION — 오시는 길 (주소 · 카카오맵 · 지도 앱 버튼 · 교통편)
+     ===================================================================== */
+  .venue-name{font-size:18px; font-weight:600; margin:0 0 8px;}
+  .venue-addr{font-size:13.5px; color:var(--ink-soft); margin:0 0 24px; line-height:1.7;}
+
+  .yakdo{display:none; width:100%; height:auto; border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .yakdo.ko-inline{display:block;}
+  body.lang-en .yakdo.ko-inline{display:none;}
+  body.lang-en .yakdo.en-inline{display:block;}
+  /* 지도 앱 버튼 (네이버 / 카카오 / 티맵) — 참석 모달에서도 같이 씀 */
+  .map-btns{display:flex; gap:8px; margin-top:14px;}
+  .map-btn{
+    flex:1; text-align:center; padding:12px 4px; border-radius:8px; border:1px solid var(--line);
+    background:#fff; font-size:13px; color:var(--ink); text-decoration:none; font-weight:500;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .map-ico{width:18px; height:18px; border-radius:4px; flex:none;}
+  .map-hint{font-size:11.5px; color:var(--ink-soft); text-align:center; margin-top:10px;}
+
+  /* 교통편 */
+  .transit{margin-top:34px; border-top:1px solid var(--line); padding-top:24px;}
+  .transit-row{display:flex; gap:14px; margin-bottom:18px; align-items:flex-start;}
+  .transit-icon{font-size:15px; margin-top:1px;}
+  .transit-text b{font-size:13.5px; margin-bottom:3px;}
+  .transit-text p{margin:0; font-size:13px; color:var(--ink-soft); line-height:1.65;}
+
+  /* =====================================================================
+     9. MID PHOTO — 중간 사진
+     ===================================================================== */
+  .mid-photo{aspect-ratio:4/5; background:linear-gradient(160deg,#efece3,#dcd7c8); overflow:hidden;}
+  .mid-photo img{width:100%; height:100%; object-fit:cover;}
+
+  /* =====================================================================
+     10. RSVP — 참석 여부 (봉투 그림 + 버튼)
+     ===================================================================== */
+  .teaser-envelope{position:relative; width:300px; margin:0 auto 10px; isolation:isolate;}
+  .teaser-card{
+    position:relative; z-index:2; width:72%; margin:0 auto; background:#fdfcf9; border-radius:3px;
+    padding:26px 10px 40px; text-align:center; box-shadow:0 14px 28px rgba(20,20,20,.2);
+  }
+  .teaser-env{position:relative; margin-top:-57.1%;}   /* 카드 아래쪽이 주머니 안으로 들어가는 정도 */
+  .teaser-env-back, .teaser-env-front{display:block; width:100%; height:auto;}
+  .teaser-env-back{position:relative; z-index:1;}
+  .teaser-env-front{position:absolute; left:0; top:0; z-index:3; pointer-events:none; filter:drop-shadow(0 -3px 4px rgba(20,20,20,.28));}
+  .teaser-names{font-family:'Cormorant Garamond', serif; font-size:18px; color:#59554B; margin:0 0 12px; font-weight:600;}
+  .teaser-date{font-size:13px; color:var(--ink); margin:0 0 5px; font-weight:500;}
+  .teaser-venue{font-size:10.5px; color:var(--ink-soft); margin:0; line-height:1.5;}
+  .teaser-names, .teaser-date, .teaser-venue{display:none;}
+  .teaser-names.ko-inline, .teaser-date.ko-inline, .teaser-venue.ko-inline{display:block;}
+  body.lang-en .teaser-names.ko-inline, body.lang-en .teaser-date.ko-inline, body.lang-en .teaser-venue.ko-inline{display:none;}
+  body.lang-en .teaser-names.en-inline, body.lang-en .teaser-date.en-inline, body.lang-en .teaser-venue.en-inline{display:block;}
+
+  .rsvp-envelope{position:relative; width:200px; margin:0 auto 28px;}
+  .rsvp-card-behind{
+    position:absolute; top:-14px; right:-16px; width:170px; height:112px;
+    background:var(--bg); border:1px solid var(--line); border-radius:4px;
+    transform:rotate(4deg); box-shadow:0 6px 16px rgba(20,20,20,.08);
+  }
+  .rsvp-env-svg{position:relative; width:100%; display:block; filter:drop-shadow(0 10px 20px rgba(20,20,20,.14));}
+  #rsvpSection .btn-primary{background:var(--gold); color:#fff;}
+  #snapBtn:not(.disabled){background:var(--gold); color:#fff;}   /* 눌러지는 상태(예식 당일 이후)만 골드, 나머지는 기존 회색 */
+
+  /* =====================================================================
+     11. GUEST SNAP — 하객 스냅 (필름)
+     ===================================================================== */
+  /* 필름 카트리지 + 사진 필름: SVG 한 장으로 그려서 화면 폭에 맞춰 같이 커지고 작아짐 */
+  .film-hero {position: relative; width: 100%; min-height: clamp(280px, 40vw, 520px); overflow: hidden; display: flex; align-items: center; isolation: isolate; background: #fbfaf8;}
+  .film-layer {position: relative; z-index: 1; width: 96%; margin-left: 0; transform: translateY(1%);}
+  .film-svg {display: block; width: 100%; height: auto; overflow: visible;}
+  .canister-layer {position: absolute; z-index: 2; left: 87.2%; top: 50%; width: 17.1%; transform: translateY(-51.8%); pointer-events: none;}
+  .canister-svg {display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 8px 8px rgb(0 0 0 / 12%));}
+  .mini-count{font-size:12px; color:var(--ink-soft); margin-top:14px;}
+
+  /* =====================================================================
+     12. FOOTER
+     ===================================================================== */
+  footer{padding:60px 32px 90px; text-align:center;}
+  footer .fam{font-size:20px; margin:0 0 10px;}
+  footer .fin{font-size:11.5px; letter-spacing:.1em; color:var(--ink-soft);}
+
+  /* =====================================================================
+     13. 겹쳐 뜨는 UI — 참석 모달(RSVP / D-day 안내) · 플로팅 버튼
+     ===================================================================== */
+  .modal-backdrop{position:fixed; inset:0; background:rgba(20,19,16,.55); z-index:800; display:none; align-items:center; justify-content:center; padding:24px;}
+  .modal-backdrop.show{display:flex;}
+  .modal-sheet{
+    background:var(--bg); width:100%; max-width:440px; border-radius:18px;
+    max-height:85vh; overflow-y:auto; padding:26px 26px calc(26px + env(safe-area-inset-bottom,0px));
+    animation:sheetPop .3s ease;
+  }
+  @keyframes sheetPop{from{transform:scale(.96); opacity:0;} to{transform:scale(1); opacity:1;}}
+  .modal-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .modal-top .modal-title{font-weight:600; font-size:17px;}
+  body.lang-en .modal-top .modal-title{font-style:italic; font-size:21px;}
+  .modal-close{background:none; border:none; font-size:22px; color:var(--ink-soft); cursor:pointer; line-height:1; padding:4px;}
+  .modal-desc{font-size:13px; color:var(--ink-soft); line-height:1.7; margin:0 0 18px;}
+  .hp-field{position:absolute; left:-9999px;}
+  .f-label{display:block; font-size:13px; font-weight:600; color:var(--ink); margin:16px 0 6px;}
+  .rsvp-form .f-label:first-of-type{margin-top:20px;}
+  .f-label .req{color:#b5493f;}
+  .f-label .f-optional{font-weight:400; color:var(--ink-soft); font-size:12px;}
+  .f-note{font-size:12.5px; color:var(--ink-soft); line-height:1.65; margin:2px 0 12px;}
+  .f-input{
+    width:100%; box-sizing:border-box; border:1px solid var(--line); border-radius:8px;
+    padding:10px 12px; font-size:14px; font-family:inherit; background:#fff; color:var(--ink);
+  }
+  .f-textarea{resize:vertical; min-height:70px;}
+  .f-toggle{display:flex; gap:8px;}
+  .f-toggle-btn{
+    flex:1; border:1px solid var(--line); background:#fff; border-radius:8px;
+    padding:11px 10px; font-size:14px; color:var(--ink-soft); cursor:pointer; font-family:inherit;
+  }
+  .f-toggle-btn.active{background:var(--ink); border-color:var(--ink); color:#fff; font-weight:500;}
+  .f-toggle.f-toggle-error .f-toggle-btn{border-color:#b5493f;}
+  .f-divider{border-top:1px solid var(--line); margin:22px 0;}
+  .f-checklist{display:flex; flex-direction:column; gap:12px; margin-top:4px;}
+  .f-check{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink); cursor:pointer;}
+  .f-check input[type="checkbox"]{width:18px; height:18px; accent-color:var(--ink); cursor:pointer; flex:none; margin:0;}
+  .f-submit{
+    display:block; width:100%; margin-top:24px; background:var(--ink); color:#fff; border:none;
+    border-radius:999px; padding:14px; font-size:14px; font-weight:500; cursor:pointer; font-family:inherit;
+  }
+  .f-submit:disabled{opacity:.6; cursor:default;}
+  .f-error{color:#b5493f; font-size:12.5px; margin-top:10px; text-align:center;}
+  .f-thanks{text-align:center; padding:34px 10px; font-size:15px; color:var(--ink); line-height:1.8;}
+  .modal-dismiss{display:block; width:100%; text-align:center; margin-top:16px; font-size:12.5px; color:var(--ink-soft); background:none; border:none; text-decoration:underline; cursor:pointer;}
+  .dday-mini{display:flex; justify-content:center; gap:10px; margin:18px 0 20px;}
+  .dday-mini .u{text-align:center;}
+  .dday-mini .n{font-size:24px; color:var(--accent); font-variant-numeric:tabular-nums;}
+  .dday-mini .l{font-size:9.5px; color:var(--ink-soft); letter-spacing:.06em;}
+  .map-embed{width:100%; height:220px; border:0; border-radius:6px; filter:saturate(.9);}   /* D-day 안내의 구글 지도 */
+  .map-embed{display:none; width:100%; height:auto; border-radius:6px;}
+  .map-embed.ko-inline{display:block;}
+  body.lang-en .map-embed.ko-inline{display:none;}
+  body.lang-en .map-embed.en-inline{display:block;}
+  .atm-note{background:var(--accent-soft); border-radius:10px; padding:14px 16px; font-size:13px; color:var(--accent); margin-top:16px;}
+
+  .float-reopen{
+    position:fixed; right:16px; bottom:calc(env(safe-area-inset-bottom,0px) + 18px); z-index:400;
+    background:var(--ink); color:#fff; border:none; border-radius:999px; padding:12px 20px;
+    font-size:12.5px; box-shadow:0 6px 18px rgba(20,20,20,.22); cursor:pointer;
+  }
+
+  /* =====================================================================
+     14. 다크 모드 · 작은 화면
+     ===================================================================== */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1B18; --ink:#F1EFE8; --ink-soft:#B7B4A8; --line:#38362F; --accent-soft:#2A2E27;
+    }
+    body:not([data-theme="light"]) .map-btn{background:#26241f;}
+    body:not([data-theme="light"]) .modal-sheet{background:#232119;}
+  }
+  @media (max-width:360px){
+    .pad{padding:72px 22px;}
+    .pad-sm{padding:48px 22px;}
+  }
+  @media (max-width: 600px) {
+    .film-hero { min-height: 260px; }
+  }
+
+  /* =====================================================================
+     15. 섹션 스크롤 등장 효과 (JS는 <head>의 별도 스크립트)
+     ===================================================================== */
+  .reveal-on section:not(.hero){
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .8s ease, transform .8s cubic-bezier(.22,.61,.36,1);
+    pointer-events:none;
+  }
+  .reveal-on section:not(.hero).is-visible{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal-on section:not(.hero){opacity:1; transform:none; transition:none; pointer-events:auto;}
+  }
+</style>
+<script>
+(function(){
+  try{
+    if(!('IntersectionObserver' in window)) return;
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var root = document.documentElement;
+    root.classList.add('reveal-on');
+
+    function init(){
+      try{
+        var secs = Array.prototype.slice.call(document.querySelectorAll('section:not(.hero)'));
+
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){ if(en.isIntersecting) show(en.target); });
+        }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+
+        function show(el){ el.classList.add('is-visible'); io.unobserve(el); }
+
+        /* 점프·새로고침으로 화면 위쪽으로 지나쳐 버린 섹션은 애니메이션 없이 바로 표시 */
+        var ticking = false;
+        function sweep(){
+          ticking = false;
+          secs.forEach(function(s){
+            if(!s.classList.contains('is-visible') && s.getBoundingClientRect().bottom < 0) show(s);
+          });
+        }
+        window.addEventListener('scroll', function(){
+          if(!ticking){ ticking = true; requestAnimationFrame(sweep); }
+        }, { passive: true });
+
+        secs.forEach(function(s){ io.observe(s); });
+        sweep();
+        window.__revealReady = true;
+      }catch(e){ root.classList.remove('reveal-on'); }
+    }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+
+    /* 안전장치: 4초 안에 준비되지 않으면 효과를 끄고 모든 섹션을 보이게 함 */
+    setTimeout(function(){ if(!window.__revealReady) root.classList.remove('reveal-on'); }, 4000);
+  }catch(e){ document.documentElement.classList.remove('reveal-on'); }
+})();
+</script>
+</head>
+<body class="intro-lock">
+<div class="lang-switch" role="group" aria-label="Language">
+  <button type="button" id="btnKo" class="active" onclick="setLang('ko')">한글</button>
+  <button type="button" id="btnEn" onclick="setLang('en')">ENG</button>
+</div>
+<!-- 배경 음악: 노래 파일 경로는 src 만 바꾸면 됩니다 -->
+  <audio id="bgm" src="assets/bgm.mp3" loop preload="none"></audio>
+  <div class="lang-switch bgm-switch">
+    <button type="button" id="bgmBtn" aria-label="배경 음악 켜기/끄기 · Toggle music" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="7" cy="18" r="3" fill="currentColor"/>
+        <circle cx="17" cy="16" r="3" fill="currentColor"/>
+        <line class="bgm-slash" x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+<div class="wrap">
+
+  <!-- ============ HERO / OPENING SLIDESHOW ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-slide active" data-idx="0">
+      <img src="assets/BOM00165-1.jpg" class="hero-img" style="transform: scale(1.1); transform-origin: center 30%;" alt="Opening-165">
+    </div>
+    <div class="hero-slide" data-idx="1">
+      <img src="assets/BOM00261-1.jpg" class="hero-img" style="object-position: 75% center;" alt="Opening-261">
+    </div>
+    <div class="hero-slide" data-idx="2">
+      <img src="assets/BOM00543.jpg" class="hero-img" style="object-position: center center;" alt="Opening-543">
+    </div>
+    <div class="hero-overlay"></div>
+    
+    <div class="cover-layer" id="coverLayer">
+      <img src="assets/BOM00122.jpg" class="cover-photo" style="object-fit:cover;" alt="Cover-122">
+      <div class="cover-overlay"></div>
+      <div class="cover-content">
+        <div class="cover-names">
+          <span class="ko-inline">이주한 · 오하린</span>
+          <span class="en-inline">Juhan &amp; Harin</span>
+        </div>
+        <div class="cover-date">
+          <span class="ko-inline">2027. 12. 18 토요일 · 오후 5시 30분</span>
+          <span class="en-inline">Saturday, 18th December, 2027 · 5:30 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-caption cap-shift-up">
+      <p id="heroCaption" class="ko-inline">매번 집 앞까지 데려다주던 길을</p>
+      <p id="heroCaptionEn" class="en-inline">The road that always led me back to your door,</p>
+      <div class="hero-dots">
+        <span class="active" data-d="0" onclick="goToHero(0)"></span>
+        <span data-d="1" onclick="goToHero(1)"></span>
+        <span data-d="2" onclick="goToHero(2)"></span>
+      </div>
+    </div>
+    <div class="scroll-cue"></div>
+  </section>
+
+  <!-- ============ GREETING ============ -->
+  <section class="pad center greeting">
+    <div class="section-heading">
+      <span class="heading-line"></span>
+      <span class="heading-label">Invitation</span>
+      <span class="heading-line"></span>
+    </div>
+    <div class="greeting-headline ko-block">'나'에서 '우리'가 되는 첫 날</div>
+    <div class="greeting-headline en-block">From 'Me' to 'We'</div>
+    <div class="ko-block">
+      <p>각자의 속도로 씩씩하게 걸어오던 두 사람이</p>
+      <p>이제는 서로 발걸음을 맞춰</p>
+      <p style="margin-bottom:20px"> 평생을 나란히 걷기로 약속했습니다.</p>
+      <p>'나'보다 '우리'라는 말이 더 자연스러운진 지금,</p>
+      <p style="margin-bottom:20px">저희의 새로운 시작을 함께 축복해 주세요</p>
+      <p>기쁜 날, 귀한 걸음으로 자리를 빛내주시면</p>
+      <p>더없이 감사하겠습니다.</p>
+    </div>
+    <div class="en-block">
+      <p>Two people who walked different paths</p>
+      <p>are now choosing to write one story together.</p>
+      <p>What we've learned along the way</p>
+      <p>is that love never rushes, and yet it never stops.</p>
+      <p style="margin-top:20px">We would be honored to have you join us</p>
+      <p>as we begin this new road, with your blessing.</p>
+    </div>
+  </section>
+
+  <!-- ============ NAMES ============ -->
+  <section class="pad-sm center">
+    <div class="hr-soft"></div>
+    <div class="family-line">
+      <span class="family-parents ko-inline">이세호 · 김현미의 아들</span>
+      <span class="family-parents en-inline">Son of Seho Lee &amp; Hyunmi Kim</span>
+      <span class="fam-own ko-inline">이주한</span>
+      <span class="fam-own en-inline">Juhan Lee</span>
+    </div>
+    <div class="family-line">
+      <span class="family-parents ko-inline">오옥태 · 김현림의 딸</span>
+      <span class="family-parents en-inline">Daughter of OckTae Oh &amp; Hyunrim Kim</span>
+      <span class="fam-own ko-inline">오하린</span>
+      <span class="fam-own en-inline">Harin Oh</span>
+    </div>
+  </section>
+
+  <!-- ============ WEDDING REGISTRY ============ -->
+  <section class="pad-sm">
+    <p class="registry-note center ko-block">참석해 주시는 마음만으로도 충분히 감사합니다. <br> 그래도 축하를 전하고 싶으신 분들을 위해 안내드립니다.</p>
+    <p class="registry-note center en-block">Your presence means more than enough. <br>For those who'd still like to send a gift, here are the details.</p>
+
+    <button type="button" class="btn-registry" onclick="openRegistry()">
+      <span class="ko-inline">마음 전하실 곳</span>
+      <span class="en-inline">Wedding Registry</span>
+    </button>
+  </section>
+
+  <div class="registry-overlay" id="registryOverlay">
+    <button type="button" class="registry-close" onclick="closeRegistry()">×</button>
+    <div class="registry-title">
+      <span class="rl"></span>
+      <span class="ko-inline" >계좌번호</span><span class="en-inline">Account Number</span>
+      <span class="rl"></span>
+    </div>
+
+    <div class="registry-side">
+      <div class="registry-side-label ko-block">신랑측</div>
+      <div class="registry-side-label en-block">Groom's Side</div>
+      <div class="registry-acct">
+        <div>
+          <div class="who"><span class="ko-inline">이주한</span><span class="en-inline">Juhan Lee</span></div>
+          <div class="bank"><span class="ko-inline">국민은행</span><span class="en-inline">KB Kookmin Bank</span></div>
+          <div class="num">068801-04-391848</div>
+        </div>
+        <button type="button" class="copy-icon-btn" onclick="copyAccountIcon(this,'06880104391848')" aria-label="계좌번호 복사">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="registry-side">
+      <div class="registry-side-label ko-block">신부측</div>
+      <div class="registry-side-label en-block">Bride's Side</div>
+      <div class="registry-acct">
+        <div>
+          <div class="who"><span class="ko-inline">오하린</span><span class="en-inline">Harin Oh</span></div>
+          <div class="bank"><span class="ko-inline">국민은행</span><span class="en-inline">KB Kookmin Bank</span></div>
+          <div class="num">031601-04-228584</div>
+        </div>
+        <button type="button" class="copy-icon-btn" onclick="copyAccountIcon(this,'03160104228584')" aria-label="계좌번호 복사">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+      </div>
+      <div class="registry-acct">
+        <div>
+          <div class="who"><span class="ko-inline">오옥태</span><span class="en-inline">OckTae Oh</span></div>
+          <div class="bank"><span class="ko-inline">하나은행</span><span class="en-inline">KEB Hana Bank</span></div>
+          <div class="num">347-910271-68707</div>
+        </div>
+        <button type="button" class="copy-icon-btn" onclick="copyAccountIcon(this,'34791027168707')" aria-label="계좌번호 복사">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="pad-sm">
+    <div class="section-heading">
+      <span class="heading-line"></span>
+      <span class="heading-label">Gallery</span>
+      <span class="heading-line"></span>
+    </div>
+    
+    <div class="gallery-wrap">
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- 사진 교체: 각 이미지의 src를 실제 사진 경로로 바꾸세요. data-full 은 라이트박스에서 크게 보일 이미지입니다. -->
+        <div class="g-item"><img src="assets/BOM00001-1.jpg" data-full="assets/BOM00001-1.jpg" loading="lazy" alt="Hanbok-1"></div>
+        <div class="g-item"><img src="assets/BOM00012-1.jpg" data-full="assets/BOM00012-1.jpg" loading="lazy" alt="Hanbok-12"></div>
+        <div class="g-item"><img src="assets/BOM00043-1.jpg" data-full="assets/BOM00043-1.jpg" loading="lazy" alt="Hanbok-43"></div>
+        <div class="g-item"><img src="assets/BOM00060-1.jpg" data-full="assets/BOM00060-1.jpg" loading="lazy" alt="Hanbok-60"></div>
+        <div class="g-item"><img src="assets/BOM00087-1.jpg" data-full="assets/BOM00087-1.jpg" loading="lazy" style="object-position: 80% center;" alt="Hanbok-87"></div>
+        <div class="g-item"><img src="assets/BOM00248-1.jpg" data-full="assets/BOM00248-1.jpg" loading="lazy" alt="Hanbok-248"></div>
+        <div class="g-item"><img src="assets/BOM00344-1.jpg" data-full="assets/BOM00344-1.jpg" loading="lazy" alt="Hanbok-344"></div>
+        <div class="g-item"><img src="assets/BOM00386-1.jpg" data-full="assets/BOM00386-1.jpg" loading="lazy" alt="Hanbok-386"></div>
+        <div class="g-item"><img src="assets/BOM00429.jpg" data-full="assets/BOM00429.jpg" loading="lazy" alt="Hanbok-429"></div>
+        <!-- 더보기 사진 -->
+        <div class="g-item g-extra"><img src="assets/BOM00557-1.jpg" data-full="assets/BOM00557-1.jpg" loading="lazy" alt="White-557"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00583-1.jpg" data-full="assets/BOM00583-1.jpg" loading="lazy" alt="White-583"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00593-1.jpg" data-full="assets/BOM00593-1.jpg" loading="lazy" alt="White-593"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00621-1.jpg" data-full="assets/BOM00621-1.jpg" loading="lazy" alt="White-621"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00647-1.jpg" data-full="assets/BOM00647-1.jpg" loading="lazy" alt="White-647"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00700-1.jpg" data-full="assets/BOM00700-1.jpg" loading="lazy" alt="White-700"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00742-1.jpg" data-full="assets/BOM00742-1.jpg" loading="lazy" alt="White-742"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00767-1.jpg" data-full="assets/BOM00767-1.jpg" loading="lazy" alt="White-767"></div>
+        <div class="g-item g-extra"><img src="assets/BOM00827.jpg" data-full="assets/BOM00827.jpg" loading="lazy" alt="White-827"></div>
+        <div class="g-item g-extra"><img src="assets/0602 s1 원본 - 10.jpg" data-full="assets/0602 s1 원본 - 10.jpg" loading="lazy" alt="Self-10"></div>
+        <div class="g-item g-extra"><img src="assets/0602 s1 원본 - 14.jpg" data-full="assets/0602 s1 원본 - 14.jpg" loading="lazy" alt="Self-14"></div>
+        <div class="g-item g-extra"><img src="assets/0602 s1 원본 - 21.jpg" data-full="assets/0602 s1 원본 - 21.jpg" loading="lazy" alt="Self-21"></div>
+        <div class="g-item g-extra"><img src="assets/0602 s1 원본 - 26.jpg" data-full="assets/0602 s1 원본 - 26.jpg" loading="lazy" alt="Self-26"></div>
+        <div class="g-item g-extra"><img src="assets/0602 s1 원본 - 33.jpg" data-full="assets/0602 s1 원본 - 33.jpg" loading="lazy" alt="Self-33"></div>
+        <div class="g-item g-extra"><img src="assets/0602 s1 원본 - 43.jpg" data-full="assets/0602 s1 원본 - 43.jpg" loading="lazy" alt="Self-43"></div>
+      </div>
+      <div class="gallery-fade" id="galleryFade"></div>
+    </div>
+    <button type="button" class="gallery-more" id="galleryMoreBtn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="7 7 12 12 17 7"></polyline>
+        <polyline points="7 13 12 18 17 13"></polyline>
+      </svg>
+      <span class="ko-inline">사진 더보기</span><span class="en-inline">View More</span>
+    </button>
+  </section>
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- ============ SAVE THE DATE (달력 + 카운트다운) ============ -->
+  <section class="pad light center">
+    <div class="section-heading">
+      <span class="heading-line"></span>
+      <span class="heading-label">Save the Date</span>
+      <span class="heading-line"></span>
+    </div>
+    <p class="date-big">2027 . 12 . 18</p>
+    <p class="date-sub ko-block">토요일 오후 5시 30분</p>
+    <p class="date-sub en-block">Saturday, 5:30 PM</p>
+
+    <div class="calendar">
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <div class="countdown">
+      <div class="cd-unit"><div class="cd-num" id="cdD">00</div><div class="cd-label">DAYS</div></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cdH">00</div><div class="cd-label">HRS</div></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cdM">00</div><div class="cd-label">MIN</div></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cdS">00</div><div class="cd-label">SEC</div></div>
+    </div>
+  </section>
+
+  <!-- ============ LOCATION ============ -->
+  <section class="pad-sm">
+    <div class="section-heading">
+      <span class="heading-line"></span>
+      <span class="heading-label">Location</span>
+      <span class="heading-line"></span>
+    </div>
+    <h2 class="title center ko-block">오시는 길</h2>
+    <h2 class="title center en-block">Direction</h2>
+    <div class="center">
+      <p class="venue-name ko-block">더채플앳논현 · 6층 라포레홀</p>
+      <p class="venue-name en-block">The Chapel at Nonhyeon · 6F, La Forêt Hall</p>
+      <p class="venue-addr ko-block">서울 강남구 논현로 549 (역삼동, 와이타워)<br>02-562-1121</p>
+      <p class="venue-addr en-block">549 Nonhyeon-ro, Gangnam-gu, Seoul<br>(Yeoksam-dong, Y Tower) <br> 02-562-1121</p>
+    </div>
+    
+    <img class="yakdo ko-inline" src="assets/direction_kr.jpeg" alt="오시는 길 약도">
+    <img class="yakdo en-inline" src="assets/direction_en.jpeg" alt="Map">
+
+    <div class="map-btns">
+      <a class="map-btn" target="_blank" rel="noopener" href="https://map.naver.com/p/search/%EB%8D%94%EC%B1%84%ED%94%8C%EC%95%B3%EB%85%BC%ED%98%84">
+        <img class="map-ico" src="https://play-lh.googleusercontent.com/URf_NsdR_zz2jAQFWHQf2ArOPdAa7n0Exolkm0h4ydFvmUMxG4puOam19EahHIge16Ojl0_jNRnoH1LRVad_SQ=w240-h480-rw" alt="">네이버지도</a>
+      <a class="map-btn" target="_blank" rel="noopener" href="https://map.kakao.com/link/search/%EB%8D%94%EC%B1%84%ED%94%8C%EC%95%B3%EB%85%BC%ED%98%84">
+        <img class="map-ico" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS4mtNHvN7KddkKUVptXE_BZ2R6i_ul_9IYQTAAbMMQQ&s=10" alt="">카카오맵</a>
+      <a class="map-btn" href="https://tmap.life/cc74b89b">
+        <img class="map-ico" src="https://play-lh.googleusercontent.com/49iwmmjM20TL_OlZucUw1y3xxA3ZmjO7ZDV_8vcGi8Ef4yq0naS7rLantFLxyUDUCBMBTzuROn1kOWvbPZAo" alt="">티맵</a>
+    </div>
+    <p class="map-hint en-block">For those who are new to Korea, Google Maps can be inaccurate, so we recommend installing a Korean map app instead.(i.e. Kakao map) </p>
+
+    <div class="transit">
+      <div class="transit-row">
+        <div class="transit-icon">🚇</div>
+        <div class="transit-text">
+          <b class="ko-block">지하철</b>
+          <b class="en-block">Subway</b>
+          <p class="ko-inline">2호선 역삼역 6번 출구 → 좌측 방향 도보 450m, 좌측 건물<br>9호선 언주역 7번 출구 → 정면 방향 도보 150m, 우측 건물</p>
+          <p class="en-inline">Line 2, Yeoksam Stn. Exit 6 → walk 450m to the left, building on your left<br>Line 9, Eonju Stn. Exit 7 → walk 150m straight, building on your right</p>
+        </div>
+      </div>
+      <div class="transit-row">
+        <div class="transit-icon">🚌</div>
+        <div class="transit-text">
+          <b class="ko-block">버스</b>
+          <b class="en-block">Bus</b>
+          <p class="ko-inline">간선 147 · 463 / 지선 4211 / 광역 3600 · 9600<br>'차병원(역삼방면)' 하차 후 역삼역 방면 50m, 우측 건물</p>
+          <p class="en-inline">Blue 147 · 463 / Green 4211 / Red 3600 · 9600<br>Get off at "Cha Hospital (Yeoksam-bound)", walk 50m toward Yeoksam Stn., building on the right</p>
+        </div>
+      </div>
+      <div class="transit-row">
+        <div class="transit-icon">🚗</div>
+        <div class="transit-text">
+          <b class="ko-block">자가용 · 주차</b>
+          <b class="en-block">By Car / Parking</b>
+          <p class="ko-inline">내비게이션 '더채플앳논현' 검색 · 건물 앞 발렛파킹 안내<br>예식 후 주차장까지 셔틀버스 운행</p>
+          <p class="en-inline">Search "The Chapel at Nonhyeon" in your navigation app <br>Valet parking available at the entrance<br>A shuttle bus runs to the parking area after the ceremony</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MID PHOTO ============ -->
+  <section>
+    <div class="mid-photo">
+      <img src="assets/BOM00101-1.jpg" alt="mid-photo-101">
+    
+    </div>
+  </section>
+
+
+  <!-- ============ RSVP ============ -->
+  <section class="pad-sm center" id="rsvpSection">
+    <div class="section-heading">
+      <span class="heading-line"></span>
+      <span class="heading-label">RSVP</span>
+      <span class="heading-line"></span>
+    </div>
+    <h2 class="title center ko-block">참석 여부 전달</h2>
+    <h2 class="title center en-block"></h2>
+    <div class="rsvp-envelope">
+    <div class="rsvp-card-behind"></div>
+    <svg viewBox="0 0 280 190" class="rsvp-env-svg">
+      <rect x="0" y="0" width="280" height="190" rx="8" fill="#4A463E"/>
+      <path d="M6 14 L140 118 L274 14" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+      <path d="M0 8 Q0 0 8 0 L272 0 Q280 0 280 8 L280 10 L140 112 L0 10 Z" fill="#59554B"/>
+      <path d="M10 186 L110 108" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <path d="M270 186 L170 108" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <text x="140" y="60" text-anchor="middle" font-size="22" letter-spacing="5" fill="#E7DCC2">R.S.V.P</text>
+    </svg>
+  </div>
+    <p class="desc ko-block">참석 가능 여부를 미리 알려주시면 감사하겠습니다.</p>
+    <p class="desc en-block">Please let us know if you are attending!</p>
+    <button type="button" class="btn-primary" onclick="openModal()">
+      <span class="ko-inline">참석 의사 전달하기</span><span class="en-inline">R.S.V.P</span>
+    </button>
+  </section>
+
+  <!-- ============ GUEST SNAP ============ -->
+  <section class="pad-sm center" id="guestSnapSection">
+    <div class="section-heading">
+      <span class="heading-line"></span>
+      <span class="heading-label">Guest Snap</span>
+      <span class="heading-line"></span>
+    </div>
+    <h2 class="title center ko-block">하객 스냅</h2>
+    <h2 class="title center en-block">Guest Snap</h2>
+    <!-- 필름 카트리지 + 사진 필름. 사진 교체: 아래 <image href="..."> 3곳의 경로를 바꾸세요 (왼쪽 → 오른쪽 순서) -->
+    <div class="film-layer">
+      <svg class="film-svg" viewBox="-122 50 422 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="웨딩 사진이 들어간 필름 띠" focusable="false">
+        <defs>
+          <!-- 금속 캡: 가로로 어두움-밝음-어두움 -->
+          <linearGradient id="fc-metal" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#08080a"/><stop offset=".10" stop-color="#1d1e22"/>
+            <stop offset=".27" stop-color="#63646b"/><stop offset=".35" stop-color="#34353a"/>
+            <stop offset=".62" stop-color="#141417"/><stop offset=".87" stop-color="#2d2e33"/><stop offset="1" stop-color="#060607"/>
+          </linearGradient>
+          <linearGradient id="fc-stub" x1="0" x2="1">
+            <stop offset="0" stop-color="#050505"/><stop offset=".3" stop-color="#47474b"/><stop offset=".45" stop-color="#1a1a1c"/><stop offset="1" stop-color="#040404"/>
+          </linearGradient>
+          <radialGradient id="fc-topface" cx=".38" cy=".4" r=".8">
+            <stop offset="0" stop-color="#4a4b51"/><stop offset=".6" stop-color="#1c1d21"/><stop offset="1" stop-color="#0b0b0d"/>
+          </radialGradient>
+          <!-- 라벨: 금색 -->
+          <linearGradient id="fc-gold" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#F8C75F"/><stop offset=".5" stop-color="#F0AC25"/><stop offset="1" stop-color="#D88612"/>
+          </linearGradient>
+          <!-- 원통 음영: 가장자리 어둡게, 왼쪽에 빛, 오른쪽 가장자리에 반사광 -->
+          <linearGradient id="fc-shade" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#000" stop-opacity=".66"/><stop offset=".07" stop-color="#000" stop-opacity=".30"/>
+            <stop offset=".2" stop-color="#fff" stop-opacity="0"/><stop offset=".29" stop-color="#fff" stop-opacity=".34"/>
+            <stop offset=".40" stop-color="#fff" stop-opacity=".06"/><stop offset=".62" stop-color="#000" stop-opacity=".05"/>
+            <stop offset=".82" stop-color="#000" stop-opacity=".26"/><stop offset=".93" stop-color="#000" stop-opacity=".46"/>
+            <stop offset=".97" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="#000" stop-opacity=".62"/>
+          </linearGradient>
+          <linearGradient id="fc-streak" x1="0" x2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="fc-capgloss" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/>
+          </linearGradient>
+          <!-- 필름 -->
+          <linearGradient id="fc-base" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#2b160c"/><stop offset=".5" stop-color="#4b2815"/><stop offset="1" stop-color="#26130a"/>
+          </linearGradient>
+          <linearGradient id="fc-sheen" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#ffd2a0" stop-opacity=".22"/><stop offset=".22" stop-color="#ffd2a0" stop-opacity="0"/>
+            <stop offset=".85" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/>
+          </linearGradient>
+          <linearGradient id="fc-tint" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#ff9a3c" stop-opacity=".10"/><stop offset=".5" stop-color="#ff9a3c" stop-opacity=".04"/><stop offset="1" stop-color="#000" stop-opacity=".12"/>
+          </linearGradient>
+          <linearGradient id="fc-fade" gradientUnits="userSpaceOnUse" x1="-122" x2="-82" y1="0" y2="0">
+            <stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/>
+          </linearGradient>
+          <linearGradient id="fc-contact" gradientUnits="userSpaceOnUse" x1="216" x2="254" y1="0" y2="0">
+            <stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".62"/>
+          </linearGradient>
+          <mask id="fc-strip" maskUnits="userSpaceOnUse" x="-200" y="50" width="500" height="112">
+            <rect x="-200" y="56" width="500" height="100" fill="url(#fc-fade)"/>
+            <g fill="#000"><rect x="-402.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-402.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-388.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-388.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-374.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-374.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-361.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-361.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-347.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-347.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-334.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-334.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-320.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-320.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-307.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-307.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-293.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-293.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-279.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-279.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-266.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-266.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-252.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-252.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-239.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-239.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-225.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-225.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-212.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-212.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-198.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-198.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-184.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-184.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-171.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-171.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-157.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-157.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-144.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-144.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-130.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-130.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-116.9" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-116.9" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-103.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-103.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-89.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-89.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-76.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-76.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-62.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-62.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-49.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-49.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-35.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-35.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-21.9" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-21.9" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-8.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-8.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="5.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="5.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="18.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="18.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="32.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="32.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="46.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="46.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="59.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="59.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="73.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="73.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="86.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="86.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="100.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="100.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="113.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="113.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="127.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="127.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="141.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="141.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="154.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="154.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="168.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="168.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="181.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="181.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="195.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="195.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="208.9" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="208.9" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="222.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="222.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="236.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="236.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="249.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="249.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="263.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="263.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="276.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="276.7" y="144.6" width="8.0" height="5.7" rx="1.4"/></g>
+          </mask>
+          <filter id="fc-grade"><feColorMatrix type="saturate" values=".92"/><feComponentTransfer><feFuncR type="linear" slope="1.04" intercept="-.02"/><feFuncG type="linear" slope="1.04" intercept="-.02"/><feFuncB type="linear" slope="1.04" intercept="-.02"/></feComponentTransfer></filter>
+          <filter id="fc-lift" x="-10%" y="-20%" width="120%" height="150%"><feGaussianBlur in="SourceAlpha" stdDeviation="3"/><feOffset dy="4" result="b"/><feComponentTransfer in="b"><feFuncA type="linear" slope=".34"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="fc-blur" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
+          <filter id="fc-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .38 -.13"/></filter>
+          <clipPath id="fc-label"><path d="M250,46 A46,5 0 0 0 342,46 L342,166 A46,5 0 0 1 250,166 Z"/></clipPath>
+          <clipPath id="fc-body"><path d="M250,28 L250,184 A46,5 0 0 0 342,184 L342,28 A46,5 0 0 0 250,28 Z"/></clipPath>
+          <clipPath id="fc-fr3"><rect x="-184.8" y="71.7" width="103.0" height="68.6" rx="1.4"/></clipPath>
+          <clipPath id="fc-fr0"><rect x="-76.2" y="71.7" width="103.0" height="68.6" rx="1.4"/></clipPath><clipPath id="fc-fr1"><rect x="32.4" y="71.7" width="103.0" height="68.6" rx="1.4"/></clipPath><clipPath id="fc-fr2"><rect x="141.0" y="71.7" width="103.0" height="68.6" rx="1.4"/></clipPath>
+        </defs>
+
+        <!-- 필름 띠 (카트리지 뒤에서 나옴) -->
+        <g filter="url(#fc-lift)" transform="rotate(-1.5 246 106.0)">
+          <g mask="url(#fc-strip)">
+            <rect x="-200" y="56" width="500" height="100" fill="url(#fc-base)"/>
+            <rect x="-200" y="56" width="500" height="100" fill="url(#fc-sheen)"/>
+            <line x1="-200" x2="300" y1="56.5" y2="56.5" stroke="#ffc58f" stroke-opacity=".28" stroke-width=".8"/>
+            <line x1="-200" x2="300" y1="155.5" y2="155.5" stroke="#ffc58f" stroke-opacity=".16" stroke-width=".8"/>
+            <g>
+              <rect x="-184.8" y="71.7" width="103.0" height="68.6" rx="1.4" fill="url(#fc-tint)"/>
+              <rect x="-184.4" y="72.1" width="102.2" height="67.8" rx="1.2" fill="none" stroke="#000" stroke-opacity=".55" stroke-width=".8"/>
+            </g>
+            <g>
+              <image href="assets/BOM00616.jpg" x="-76.2" y="71.7" width="103.0" height="68.6" preserveAspectRatio="xMidYMid slice" clip-path="url(#fc-fr0)" filter="url(#fc-grade)"/>
+              <rect x="-76.2" y="71.7" width="103.0" height="68.6" rx="1.4" fill="url(#fc-tint)"/>
+              <rect x="-75.8" y="72.1" width="102.2" height="67.8" rx="1.2" fill="none" stroke="#000" stroke-opacity=".55" stroke-width=".8"/>
+            </g>
+            <g>
+              <image href="assets/BOM09917.jpg" x="32.4" y="71.7" width="103.0" height="68.6" preserveAspectRatio="xMidYMid slice" clip-path="url(#fc-fr1)" filter="url(#fc-grade)"/>
+              <rect x="32.4" y="71.7" width="103.0" height="68.6" rx="1.4" fill="url(#fc-tint)"/>
+              <rect x="32.8" y="72.1" width="102.2" height="67.8" rx="1.2" fill="none" stroke="#000" stroke-opacity=".55" stroke-width=".8"/>
+            </g>
+            <g>
+              <image href="assets/BOM00718.jpg" x="141" y="11.6" width="103" height="154.5" preserveAspectRatio="none" clip-path="url(#fc-fr2)" filter="url(#fc-grade)"/>
+              <rect x="141.0" y="71.7" width="103.0" height="68.6" rx="1.4" fill="url(#fc-tint)"/>
+              <rect x="141.4" y="72.1" width="102.2" height="67.8" rx="1.2" fill="none" stroke="#000" stroke-opacity=".55" stroke-width=".8"/>
+            </g>
+            <g fill="#f0a448" fill-opacity=".78" font-family="Arial, Helvetica, sans-serif" font-size="3.6" font-weight="700" letter-spacing=".3"><text x="-134.8" y="154.5">GUEST SNAP 200</text><text x="-88.8" y="154.5">11A</text><path d="M-98.8,151.4 l2.6,1.5 l-2.6,1.5z"/><text x="-72.2" y="60.1">12</text><path d="M-63.2,57.6 l2.6,1.5 l-2.6,1.5z"/><text x="-26.2" y="154.5">GUEST SNAP 200</text><text x="19.8" y="154.5">12A</text><path d="M9.8,151.4 l2.6,1.5 l-2.6,1.5z"/><text x="36.4" y="60.1">13</text><path d="M45.4,57.6 l2.6,1.5 l-2.6,1.5z"/><text x="82.4" y="154.5">GUEST SNAP 200</text><text x="128.4" y="154.5">13A</text><path d="M118.4,151.4 l2.6,1.5 l-2.6,1.5z"/><text x="145.0" y="60.1">14</text><path d="M154.0,57.6 l2.6,1.5 l-2.6,1.5z"/><text x="191.0" y="154.5">GUEST SNAP 200</text><text x="237.0" y="154.5">14A</text><path d="M227.0,151.4 l2.6,1.5 l-2.6,1.5z"/></g>
+          </g>
+        </g>
+      </svg>
+      <div class="canister-layer">
+        <svg class="canister-svg" viewBox="244 5 104 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="금색 라벨의 필름 캐니스터" focusable="false">
+          <defs>
+            <!-- 금속 캡: 가로로 어두움-밝음-어두움 -->
+            <linearGradient id="fc-metal" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#08080a"/><stop offset=".10" stop-color="#1d1e22"/>
+              <stop offset=".27" stop-color="#63646b"/><stop offset=".35" stop-color="#34353a"/>
+              <stop offset=".62" stop-color="#141417"/><stop offset=".87" stop-color="#2d2e33"/><stop offset="1" stop-color="#060607"/>
+            </linearGradient>
+            <linearGradient id="fc-stub" x1="0" x2="1">
+              <stop offset="0" stop-color="#050505"/><stop offset=".3" stop-color="#47474b"/><stop offset=".45" stop-color="#1a1a1c"/><stop offset="1" stop-color="#040404"/>
+            </linearGradient>
+            <radialGradient id="fc-topface" cx=".38" cy=".4" r=".8">
+              <stop offset="0" stop-color="#4a4b51"/><stop offset=".6" stop-color="#1c1d21"/><stop offset="1" stop-color="#0b0b0d"/>
+            </radialGradient>
+            <!-- 라벨: 금색 -->
+            <linearGradient id="fc-gold" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#F8C75F"/><stop offset=".5" stop-color="#F0AC25"/><stop offset="1" stop-color="#D88612"/>
+            </linearGradient>
+            <!-- 원통 음영: 가장자리 어둡게, 왼쪽에 빛, 오른쪽 가장자리에 반사광 -->
+            <linearGradient id="fc-shade" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#000" stop-opacity=".66"/><stop offset=".07" stop-color="#000" stop-opacity=".30"/>
+              <stop offset=".2" stop-color="#fff" stop-opacity="0"/><stop offset=".29" stop-color="#fff" stop-opacity=".34"/>
+              <stop offset=".40" stop-color="#fff" stop-opacity=".06"/><stop offset=".62" stop-color="#000" stop-opacity=".05"/>
+              <stop offset=".82" stop-color="#000" stop-opacity=".26"/><stop offset=".93" stop-color="#000" stop-opacity=".46"/>
+              <stop offset=".97" stop-color="#fff" stop-opacity=".10"/><stop offset="1" stop-color="#000" stop-opacity=".62"/>
+            </linearGradient>
+            <linearGradient id="fc-streak" x1="0" x2="1">
+              <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="fc-capgloss" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/>
+            </linearGradient>
+            <!-- 필름 -->
+            <linearGradient id="fc-base" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#2b160c"/><stop offset=".5" stop-color="#4b2815"/><stop offset="1" stop-color="#26130a"/>
+            </linearGradient>
+            <linearGradient id="fc-sheen" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#ffd2a0" stop-opacity=".22"/><stop offset=".22" stop-color="#ffd2a0" stop-opacity="0"/>
+              <stop offset=".85" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/>
+            </linearGradient>
+            <linearGradient id="fc-tint" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#ff9a3c" stop-opacity=".10"/><stop offset=".5" stop-color="#ff9a3c" stop-opacity=".04"/><stop offset="1" stop-color="#000" stop-opacity=".12"/>
+            </linearGradient>
+            <linearGradient id="fc-fade" gradientUnits="userSpaceOnUse" x1="-8" x2="62" y1="0" y2="0">
+              <stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/>
+            </linearGradient>
+            <linearGradient id="fc-contact" gradientUnits="userSpaceOnUse" x1="216" x2="254" y1="0" y2="0">
+              <stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".62"/>
+            </linearGradient>
+            <mask id="fc-strip" maskUnits="userSpaceOnUse" x="-20" y="50" width="320" height="112">
+              <rect x="-20" y="56" width="320" height="100" fill="url(#fc-fade)"/>
+              <g fill="#000"><rect x="-402.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-402.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-388.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-388.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-374.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-374.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-361.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-361.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-347.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-347.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-334.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-334.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-320.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-320.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-307.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-307.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-293.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-293.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-279.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-279.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-266.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-266.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-252.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-252.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-239.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-239.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-225.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-225.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-212.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-212.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-198.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-198.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-184.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-184.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-171.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-171.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-157.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-157.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-144.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-144.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-130.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-130.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-116.9" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-116.9" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-103.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-103.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-89.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-89.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-76.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-76.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-62.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-62.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-49.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-49.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-35.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-35.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-21.9" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-21.9" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="-8.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="-8.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="5.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="5.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="18.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="18.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="32.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="32.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="46.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="46.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="59.5" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="59.5" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="73.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="73.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="86.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="86.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="100.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="100.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="113.8" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="113.8" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="127.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="127.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="141.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="141.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="154.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="154.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="168.1" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="168.1" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="181.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="181.7" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="195.3" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="195.3" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="208.9" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="208.9" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="222.4" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="222.4" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="236.0" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="236.0" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="249.6" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="249.6" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="263.2" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="263.2" y="144.6" width="8.0" height="5.7" rx="1.4"/><rect x="276.7" y="61.7" width="8.0" height="5.7" rx="1.4"/><rect x="276.7" y="144.6" width="8.0" height="5.7" rx="1.4"/></g>
+            </mask>
+            <filter id="fc-grade"><feColorMatrix type="saturate" values=".92"/><feComponentTransfer><feFuncR type="linear" slope="1.04" intercept="-.02"/><feFuncG type="linear" slope="1.04" intercept="-.02"/><feFuncB type="linear" slope="1.04" intercept="-.02"/></feComponentTransfer></filter>
+            <filter id="fc-lift" x="-10%" y="-20%" width="120%" height="150%"><feGaussianBlur in="SourceAlpha" stdDeviation="3"/><feOffset dy="4" result="b"/><feComponentTransfer in="b"><feFuncA type="linear" slope=".34"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="fc-blur" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
+            <filter id="fc-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .38 -.13"/></filter>
+            <clipPath id="fc-label"><path d="M250,46 A46,5 0 0 0 342,46 L342,166 A46,5 0 0 1 250,166 Z"/></clipPath>
+            <clipPath id="fc-body"><path d="M250,28 L250,184 A46,5 0 0 0 342,184 L342,28 A46,5 0 0 0 250,28 Z"/></clipPath>
+            <clipPath id="fc-fr0"><rect x="-76.2" y="71.7" width="103.0" height="68.6" rx="1.4"/></clipPath><clipPath id="fc-fr1"><rect x="32.4" y="71.7" width="103.0" height="68.6" rx="1.4"/></clipPath><clipPath id="fc-fr2"><rect x="141.0" y="71.7" width="103.0" height="68.6" rx="1.4"/></clipPath>
+          </defs>
+          <!-- 바닥 그림자 -->
+          <ellipse cx="300" cy="193" rx="54" ry="6.5" fill="#000" opacity=".34" filter="url(#fc-blur)"/>
+
+
+          <!-- ───── 카트리지 ───── -->
+          <!-- 아래쪽 돌기 -->
+          <path d="M285,187 L285,192 A11,2.6 0 0 0 307,192 L307,187 Z" fill="url(#fc-stub)"/>
+          <!-- 위/아래 캡 옆면 -->
+          <path d="M250,158 L250,184 A46,5 0 0 0 342,184 L342,158 Z" fill="url(#fc-metal)"/>
+          <path d="M250,28 L250,54 L342,54 L342,28 Z" fill="url(#fc-metal)"/>
+          <path d="M250,158 L250,184 A46,5 0 0 0 342,184 L342,158 Z" fill="url(#fc-capgloss)" opacity=".8"/>
+          <path d="M250,28 L250,54 L342,54 L342,28 Z" fill="url(#fc-capgloss)" opacity=".8"/>
+          <!-- 캡의 말린 테두리(크림프) -->
+          <g>
+            <path d="M250,34 A46,5 0 0 0 342,34" fill="none" stroke="#000" stroke-width="1" opacity="0.75"/><path d="M250,35.1 A46,5 0 0 0 342,35.1" fill="none" stroke="#fff" stroke-width="0.7" opacity="0.16"/>
+            <path d="M250,40 A46,5 0 0 0 342,40" fill="none" stroke="#000" stroke-width="1" opacity="0.7"/><path d="M250,41.1 A46,5 0 0 0 342,41.1" fill="none" stroke="#fff" stroke-width="0.7" opacity="0.12"/>
+            <path d="M250,173 A46,5 0 0 0 342,173" fill="none" stroke="#000" stroke-width="1" opacity="0.7"/><path d="M250,174.1 A46,5 0 0 0 342,174.1" fill="none" stroke="#fff" stroke-width="0.7" opacity="0.12"/>
+            <path d="M250,179 A46,5 0 0 0 342,179" fill="none" stroke="#000" stroke-width="1" opacity="0.75"/><path d="M250,180.1 A46,5 0 0 0 342,180.1" fill="none" stroke="#fff" stroke-width="0.7" opacity="0.14"/>
+          </g>
+
+          <!-- 라벨 -->
+          <g clip-path="url(#fc-label)">
+            <rect x="250" y="44" width="92" height="130" fill="url(#fc-gold)"/>
+            <rect x="250" y="44" width="92" height="130" filter="url(#fc-grain)" opacity=".30" style="mix-blend-mode:multiply"/>
+            <g fill="#1b1208">
+              <path d="M276.9,156.2 269.2,156.2 267.6,155.8 266.8,154.8 266.3,153.1 266.4,151.1 266.9,149.8 267.6,149.1 268.3,148.8 270.6,148.6 270.6,151.0 268.9,151.1 268.2,151.7 268.1,152.8 268.7,153.6 277.0,153.7 278.0,153.5 278.4,152.8 278.4,151.7 277.6,151.1 274.2,151.0 274.2,152.3 272.2,152.3 272.2,148.6 277.6,148.7 279.2,149.2 280.0,150.0 280.5,151.1 280.6,152.8 280.4,154.1 280.0,154.8 279.2,155.6 278.2,156.1ZM276.9,145.4 266.4,145.4 266.4,142.9 277.3,142.9 278.2,142.5 278.5,141.6 278.2,140.7 277.3,140.3 266.4,140.3 266.4,137.8 277.2,137.8 278.5,138.1 279.2,138.5 280.0,139.2 280.5,140.3 280.6,142.0 280.4,143.3 280.0,144.0 279.2,144.8 278.2,145.3ZM266.4,134.4 266.4,127.4 268.2,127.4 268.2,131.9 271.8,131.9 271.8,128.3 273.8,128.3 273.8,131.9 278.3,131.9 278.3,127.4 280.4,127.4 280.4,134.4ZM276.9,124.8 276.0,124.8 276.0,122.4 277.6,122.3 278.3,121.9 278.5,120.8 278.0,120.0 276.8,119.7 275.7,120.0 274.8,120.7 272.8,123.0 271.6,124.1 270.3,124.7 268.8,124.7 267.4,124.1 266.5,122.9 266.3,120.6 266.5,119.3 266.8,118.6 267.4,117.8 268.1,117.5 270.0,117.2 270.0,119.6 268.6,119.8 268.3,120.1 268.1,120.7 268.1,121.4 268.4,121.9 268.9,122.1 269.4,122.2 270.8,121.6 273.4,118.6 274.9,117.6 276.0,117.2 277.2,117.2 278.4,117.4 279.2,117.8 280.0,118.6 280.5,119.7 280.6,121.4 280.4,122.7 280.0,123.4 279.2,124.2 278.2,124.6ZM268.2,112.1 268.2,114.8 266.4,114.8 266.4,106.9 268.2,106.9 268.2,109.6 280.4,109.6 280.4,112.1ZM276.9,99.1 276.0,99.1 276.0,96.7 277.6,96.7 278.3,96.3 278.5,95.2 278.0,94.3 276.8,94.1 275.7,94.4 274.8,95.0 272.8,97.4 271.6,98.5 270.3,99.0 268.8,99.1 267.4,98.5 266.5,97.2 266.3,94.9 266.5,93.7 266.8,92.9 267.4,92.2 268.1,91.8 270.0,91.6 270.0,94.0 268.6,94.1 268.3,94.5 268.1,95.0 268.1,95.7 268.4,96.2 268.9,96.5 269.4,96.5 270.8,96.0 273.4,93.0 274.9,91.9 276.0,91.6 277.2,91.5 278.4,91.8 279.2,92.2 280.0,92.9 280.5,94.0 280.6,95.7 280.4,97.0 280.0,97.8 279.2,98.5 278.2,99.0ZM266.4,88.4 266.4,85.2 274.5,82.8 266.4,82.7 266.4,80.4 280.4,80.4 280.4,83.1 269.9,86.1 280.4,86.2 280.4,88.4ZM266.4,74.9 266.4,71.5 280.4,68.8 280.4,71.4 277.4,71.9 277.5,74.8 280.4,75.2 280.4,77.6ZM275.5,72.2 268.6,73.3 268.6,73.3 275.5,74.5ZM266.4,66.0 266.4,61.9 266.6,60.6 267.4,59.2 268.7,58.5 271.6,58.5 272.7,58.8 273.3,59.2 274.0,60.0 274.2,60.9 274.4,63.4 280.4,63.4 280.4,66.0ZM272.4,62.2 272.2,61.4 271.7,61.1 268.9,61.1 268.3,61.7 268.2,63.4 272.4,63.4Z" fill-opacity=".94"/>
+              <path d="M339.6,156.6 338.2,156.6 332.7,149.5 331.1,148.0 329.6,147.4 328.7,147.5 328.1,147.9 327.8,148.5 327.7,149.6 328.0,150.4 328.7,151.0 329.6,151.3 331.1,151.4 331.1,156.7 329.5,156.7 328.3,156.4 327.2,156.0 326.2,155.2 325.3,154.2 324.7,152.8 324.1,149.7 324.2,147.9 324.5,146.1 325.1,144.6 325.9,143.4 326.9,142.6 328.5,142.0 330.0,142.0 331.4,142.5 332.7,143.5 334.3,145.2 338.0,150.5 338.0,142.7 339.6,142.7ZM339.8,131.3 339.6,134.7 339.1,136.7 338.6,137.6 338.1,138.2 336.8,138.6 329.3,138.6 328.1,138.3 327.0,137.8 325.6,136.6 324.7,135.1 324.2,133.2 324.1,131.3 324.5,128.2 325.6,126.0 326.5,125.2 327.5,124.5 328.7,124.2 329.9,124.0 337.0,124.1 338.1,124.4 338.7,125.2 339.3,126.7 339.7,128.7ZM338.0,131.3 337.7,130.0 337.3,129.8 336.8,129.7 329.0,129.7 328.1,130.3 327.8,131.3 327.9,132.0 328.3,132.5 328.9,132.8 330.0,133.0 337.1,132.9 337.8,132.4ZM339.8,112.5 339.6,115.8 339.1,117.9 338.6,118.8 338.1,119.4 336.8,119.8 329.3,119.8 328.1,119.5 327.0,119.0 325.6,117.8 324.7,116.3 324.2,114.4 324.1,112.5 324.5,109.4 325.6,107.2 326.5,106.4 327.5,105.7 328.7,105.4 329.9,105.2 337.0,105.2 338.1,105.6 338.7,106.4 339.3,107.9 339.7,109.9ZM338.0,112.5 337.7,111.2 337.3,110.9 336.8,110.8 329.0,110.9 328.1,111.5 327.8,112.5 327.9,113.2 328.3,113.7 328.9,114.0 330.0,114.1 337.1,114.1 337.8,113.6Z" fill-opacity=".94"/>
+              <path d="M295.8,154.6 295.5,155.5 294.5,155.8 294.4,155.8 294.4,155.0 295.1,154.8 295.2,154.4 294.9,154.2 294.0,154.3 293.7,154.8 293.1,154.8 293.0,154.4 292.8,154.2 291.9,154.3 291.9,154.9 292.6,155.0 292.6,155.8 291.5,155.5 291.2,154.6 291.5,153.7 292.4,153.4 293.0,153.6 293.4,154.0 294.0,153.5 295.1,153.5 295.7,153.9ZM295.8,151.2 295.7,151.9 295.1,152.2 294.5,152.3 294.5,151.5 295.1,151.4 295.2,150.9 294.4,150.7 293.7,150.8 293.4,151.0 293.4,151.3 293.8,151.6 293.8,152.2 291.2,152.2 291.2,150.2 291.9,150.2 291.9,151.5 293.0,151.6 292.8,151.1 292.9,150.5 293.2,150.1 293.8,150.0 295.4,150.2 295.7,150.6ZM295.8,148.8 292.5,148.8 292.5,148.1 292.8,148.1 292.5,147.2 292.9,146.8 292.5,146.1 292.6,145.6 293.1,145.4 295.8,145.4 295.8,146.1 293.2,146.1 293.0,146.3 293.2,146.7 295.8,146.7 295.8,147.5 293.2,147.5 293.0,147.7 293.2,148.1 295.8,148.1ZM295.8,144.1 292.5,144.1 292.5,143.4 292.8,143.4 292.5,142.5 292.9,142.1 292.5,141.5 292.6,140.9 293.1,140.7 295.8,140.7 295.8,141.4 293.2,141.4 293.0,141.6 293.2,142.0 295.8,142.0 295.8,142.8 293.2,142.8 293.0,143.0 293.2,143.4 295.8,143.4ZM295.8,136.1 295.7,136.7 295.5,137.1 294.3,137.4 291.8,137.3 291.3,136.9 291.2,136.1 291.5,135.2 292.5,134.9 292.9,134.9 292.9,135.7 291.9,135.8 291.8,136.3 292.1,136.5 295.1,136.5 295.2,136.2 295.1,135.8 294.1,135.7 294.1,134.9 295.4,135.1 295.7,135.5ZM295.8,132.4 295.5,133.4 294.3,133.7 291.8,133.6 291.3,133.1 291.2,132.4 291.5,131.5 292.6,131.1 295.2,131.3 295.7,131.7ZM295.2,132.4 295.1,132.1 294.5,132.0 292.2,132.0 291.9,132.1 291.8,132.4 292.0,132.8 292.5,132.9 294.9,132.9 295.1,132.7ZM295.8,129.8 291.2,129.8 291.2,129.0 295.2,129.0 295.2,127.9 295.8,127.9ZM295.8,125.6 295.5,126.5 294.3,126.9 291.8,126.7 291.3,126.3 291.2,125.6 291.5,124.6 292.6,124.3 295.2,124.4 295.7,124.9ZM295.2,125.6 295.1,125.2 294.5,125.1 292.2,125.1 291.9,125.3 291.8,125.6 292.0,125.9 292.5,126.0 294.9,126.0 295.1,125.9ZM295.8,123.0 291.2,123.0 291.4,121.1 291.7,120.7 292.1,120.5 293.1,120.6 293.5,121.0 295.8,120.4 295.8,121.2 293.7,121.8 293.7,122.2 295.8,122.2ZM293.2,122.2 293.1,121.6 292.9,121.3 292.2,121.3 291.9,121.5 291.8,122.2ZM295.8,117.1 291.2,117.1 291.3,115.2 292.0,114.7 293.1,114.7 293.7,115.3 293.8,116.3 295.8,116.3ZM293.2,116.3 293.0,115.5 292.2,115.4 291.9,115.6 291.8,116.3ZM295.8,113.5 291.2,113.5 291.4,111.6 291.7,111.2 292.1,111.0 293.1,111.1 293.5,111.6 295.8,110.9 295.8,111.8 293.7,112.3 293.7,112.7 295.8,112.7ZM293.2,112.7 293.1,112.1 292.9,111.9 292.2,111.8 291.9,112.0 291.8,112.7ZM295.8,109.7 291.2,109.7 291.2,108.9 295.8,108.9ZM295.8,107.5 291.2,107.5 291.2,106.9 293.8,105.8 291.2,105.8 291.2,105.1 295.8,105.1 295.8,105.7 293.1,106.8 295.8,106.8ZM295.8,103.3 291.8,103.3 291.8,104.0 291.2,104.0 291.2,101.8 291.8,101.8 291.8,102.5 295.8,102.5ZM295.8,98.7 291.2,98.7 291.2,96.8 291.8,96.8 291.8,97.8 293.1,97.8 293.1,97.0 293.7,97.0 293.7,97.8 295.8,97.8ZM295.8,95.6 291.2,95.6 291.2,94.8 295.8,94.8ZM295.8,93.5 291.2,93.5 291.2,92.6 295.2,92.6 295.2,91.5 295.8,91.5ZM295.8,90.4 291.2,90.4 291.2,89.5 294.4,88.9 291.2,88.2 291.2,87.4 295.8,87.3 295.8,87.9 292.6,88.0 295.8,88.6 295.8,89.1 292.6,89.8 295.8,89.8Z" fill-opacity=".85"/>
+              <path d="M312.0,155.7 308.5,155.7 308.6,154.1 309.1,153.7 310.0,153.8 310.4,154.2 310.5,155.0 312.0,155.0ZM310.0,155.0 309.8,154.4 309.0,154.5 308.9,155.0ZM312.0,152.7 308.5,152.7 308.6,151.0 309.2,150.6 309.9,150.7 310.3,151.0 312.0,150.5 312.0,151.2 310.4,151.7 310.4,152.0 312.0,152.0ZM310.0,152.0 309.8,151.3 309.3,151.2 309.0,151.4 308.9,152.0ZM312.1,148.4 311.8,149.2 310.9,149.5 308.9,149.4 308.5,149.0 308.4,148.4 308.7,147.6 309.6,147.3 311.5,147.4 312.0,147.8ZM311.6,148.4 311.5,148.1 311.1,148.0 309.2,148.0 308.9,148.4 309.0,148.7 309.4,148.8 311.3,148.8ZM312.1,145.2 311.8,146.0 310.9,146.2 308.9,146.1 308.6,145.8 308.4,145.2 308.7,144.4 309.5,144.2 309.8,144.2 309.8,144.8 309.0,144.9 308.9,145.3 309.1,145.5 311.5,145.5 311.5,144.9 310.7,144.8 310.7,144.2 311.7,144.4ZM312.0,143.1 308.5,143.1 308.5,141.5 308.9,141.5 308.9,142.4 310.0,142.4 310.0,141.7 310.4,141.7 310.4,142.4 311.6,142.4 311.6,141.5 312.0,141.5ZM312.1,139.5 311.8,140.3 311.0,140.5 310.9,140.0 311.5,139.7 311.4,139.3 310.9,139.3 310.0,140.3 309.5,140.5 308.8,140.4 308.4,139.7 308.7,138.9 309.4,138.6 309.5,139.2 308.9,139.5 309.1,139.9 309.6,139.8 310.5,138.8 311.1,138.6 311.8,138.8ZM312.1,136.6 311.8,137.4 311.0,137.6 310.9,137.0 311.5,136.8 311.4,136.3 310.9,136.4 310.0,137.4 309.5,137.6 308.8,137.5 308.4,136.7 308.7,136.0 309.4,135.7 309.5,136.3 308.9,136.6 309.1,137.0 309.6,136.9 310.5,135.9 311.1,135.7 311.8,135.9ZM312.1,131.9 311.8,132.7 310.9,132.9 308.9,132.8 308.6,132.4 308.4,131.9 308.7,131.1 309.5,130.8 309.8,130.8 309.8,131.5 309.0,131.6 308.9,132.0 309.1,132.2 311.5,132.1 311.5,131.6 310.7,131.5 310.7,130.8 311.7,131.0ZM311.0,129.8 310.5,129.8 310.5,128.7 311.0,128.7ZM312.0,126.7 311.2,126.7 311.2,127.8 310.6,127.8 308.5,126.8 308.5,126.1 310.7,126.1 310.7,125.7 311.2,125.7 311.2,126.1 312.0,126.1ZM310.7,127.2 310.7,126.7 309.1,126.7ZM312.0,124.3 309.2,124.3 309.3,124.8 308.9,124.8 308.5,124.1 308.5,123.6 312.0,123.6Z" fill-opacity=".8"/>
+              <path d="M312.6,97.5 312.3,98.4 311.3,98.8 311.2,98.8 311.2,97.9 311.9,97.7 311.9,97.3 311.7,97.1 310.7,97.2 310.5,97.8 309.8,97.8 309.8,97.3 309.5,97.1 308.7,97.2 308.6,97.8 309.4,97.9 309.4,98.8 308.2,98.5 307.9,97.5 308.2,96.6 309.1,96.2 309.7,96.4 310.1,96.9 310.7,96.3 311.9,96.3 312.4,96.8ZM312.6,93.7 312.2,94.6 311.1,95.0 308.5,94.8 308.1,94.4 307.9,93.7 308.2,92.8 309.1,92.5 309.1,93.3 308.6,93.4 308.5,93.9 308.9,94.1 310.0,94.1 309.7,93.6 309.9,92.9 310.3,92.6 311.1,92.4 312.2,92.8 312.5,93.1ZM312.0,93.7 311.8,93.4 311.2,93.3 310.5,93.4 310.3,93.7 310.6,94.1 311.3,94.1 311.8,94.0ZM312.6,88.9 307.9,88.9 307.9,86.9 308.5,86.9 308.5,88.0 309.9,88.0 309.9,87.1 310.5,87.1 310.5,88.0 312.0,88.0 312.0,86.9 312.6,86.9ZM312.6,85.9 310.1,85.0 307.9,85.9 307.9,85.1 309.4,84.4 307.9,83.9 307.9,83.1 310.3,84.1 312.6,83.1 312.6,83.9 311.0,84.6 312.6,85.2ZM312.6,81.9 307.9,81.9 308.1,79.8 308.8,79.3 309.9,79.4 310.4,79.9 310.5,81.0 312.6,81.0ZM309.9,81.0 309.9,80.4 309.7,80.2 309.0,80.1 308.6,80.3 308.5,81.0ZM312.6,78.1 311.8,78.1 311.8,77.3 312.6,77.3Z" fill-opacity=".8"/>
+              <path d="M322.0,155.7 318.4,155.7 318.4,154.9 322.0,154.9ZM322.0,152.5 321.8,153.3 321.0,153.6 320.8,153.0 321.5,152.7 321.4,152.2 320.9,152.2 320.0,153.3 319.4,153.6 318.7,153.4 318.4,152.6 318.6,151.8 319.4,151.5 319.4,152.1 318.9,152.4 319.1,152.9 319.5,152.8 320.4,151.7 321.0,151.4 321.8,151.7ZM322.0,149.1 321.8,150.0 320.9,150.3 318.9,150.2 318.5,149.7 318.4,149.1 318.6,148.2 319.5,147.9 321.5,148.0 321.9,148.4ZM321.6,149.1 321.4,148.8 321.0,148.6 319.2,148.7 318.8,149.1 319.0,149.4 319.4,149.5 321.3,149.5Z" fill-opacity=".8"/>
+            </g>
+            <line x1="289.5" y1="53" x2="289.5" y2="159" stroke="#1d1209" stroke-width="0.7" opacity="0.55"/><line x1="314.9" y1="53" x2="314.9" y2="159" stroke="#1d1209" stroke-width="0.6" opacity="0.45"/>
+            <!-- 원통 음영 + 빛 번짐 -->
+            <rect x="250" y="44" width="92" height="130" fill="url(#fc-shade)"/>
+            <rect x="270.2" y="44" width="6.0" height="130" fill="url(#fc-streak)" opacity=".55"/>
+          </g>
+          <!-- 라벨 위·아래 이음선 -->
+          <path d="M250,46 A46,5 0 0 0 342,46" fill="none" stroke="#000" stroke-width="1.2" opacity="0.55"/><path d="M250,46.9 A46,5 0 0 0 342,46.9" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.22"/>
+          <path d="M250,166 A46,5 0 0 0 342,166" fill="none" stroke="#000" stroke-width="1.2" opacity="0.5"/><path d="M250,166.9 A46,5 0 0 0 342,166.9" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.14"/>
+
+          <!-- 위쪽 면(뚜껑) + 튀어나온 스풀 -->
+          <ellipse cx="296" cy="28" rx="46" ry="5" fill="url(#fc-topface)"/>
+          <ellipse cx="296" cy="28" rx="39" ry="3.8" fill="none" stroke="#000" stroke-opacity=".5" stroke-width=".8"/>
+          <ellipse cx="296" cy="27.6" rx="45" ry="4.4" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width=".8"/>
+          <path d="M281,10 L281,28 A15,3 0 0 0 311,28 L311,10 Z" fill="url(#fc-stub)"/>
+          <ellipse cx="296" cy="10" rx="15" ry="3" fill="#2b2b2f"/>
+          <ellipse cx="296" cy="10" rx="15" ry="3" fill="none" stroke="#000" stroke-opacity=".7" stroke-width=".7"/>
+          <rect x="291" y="8.6" width="10" height="1.5" rx=".7" fill="#000" opacity=".55"/>
+          <path d="M281,22 A15,3 0 0 0 311,22" fill="none" stroke="#000" stroke-opacity=".6" stroke-width="1"/>
+
+          <!-- 슬릿(필름이 나오는 틈)의 어두운 가장자리 + 오른쪽 반사광 -->
+          <rect x="250" y="48" width="1.6" height="118" fill="#000" opacity=".55"/>
+          <rect x="339.8" y="28" width="1.1" height="156" fill="#fff" opacity=".10"/>
+        </svg>
+      </div>
+    </div>
+    
+    <p class="desc ko-block" id="snapDescKo">예식 당일 신랑·신부의 행복한 순간을 담아주세요.<span class="snap-soon"><br>사진첩은 예식 당일부터 열립니다.</span></p>
+    <p class="desc en-block" id="snapDescEn">Share the moments you capture with us.<span class="snap-soon"><br>The album opens on the wedding day.</span></p>
+    <a class="btn-primary disabled" id="snapBtn" href="#" onclick="return false;">
+      <span class="ko-inline">사진 올리기</span><span class="en-inline">Upload Photos</span>
+    </a>
+    <p class="mini-count" id="snapCountdown"></p>
+  </section>
+
+  <footer>
+    <p class="fam ko-block">이주한 &amp; 오하린</p>
+    <p class="fam en-block">Juhan &amp; Harin</p>
+    <p class="fin ko-block">저희의 결혼식에 함께해 주셔서 감사합니다</p>
+    <p class="fin en-block">THANK YOU FOR BEING PART OF OUR STORY</p>
+  </footer>
+
+</div>
+
+<!-- Floating reopen button -->
+<button type="button" class="float-reopen" id="floatReopen" onclick="openModal()" style="display:none">
+  <span id="floatReopenLabel">RSVP</span>
+</button>
+
+<!-- Modal: RSVP (before wedding) / D-day info (wedding day+) -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal-sheet">
+    <div class="modal-top">
+      <span class="modal-title" id="modalTitle"></span>
+      <button type="button" class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div id="modalBodyTeaser" style="display:none">
+      <div class="teaser-envelope">
+        <div class="teaser-card">
+          <p class="teaser-names ko-inline">이주한 · 오하린</p>
+          <p class="teaser-names en-inline">Juhan &amp; Harin</p>
+          <p class="teaser-date ko-inline">2027.12.18 (토) 오후 5시 30분</p>
+          <p class="teaser-date en-inline">2027.Dec.18 (SAT) 5:30PM</p>
+          <p class="teaser-venue ko-inline">더채플앳논현 · 6층 라포레홀</p>
+          <p class="teaser-venue en-inline">The Chapel at Nonhyeon<br>6F, La Forêt Hall</p>
+        </div>
+        <div class="teaser-env">
+          <!-- 뒷면: 봉투 안쪽 + 열린 뚜껑 (카드보다 뒤) -->
+          <svg class="teaser-env-back" viewBox="0 0 280 262" aria-hidden="true">
+            <defs>
+              <linearGradient id="tev-flap" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#7B7667"/><stop offset="1" stop-color="#5C584B"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 112 H280 V254 Q280 262 272 262 H8 Q0 262 0 254 Z" fill="#35322C"/>
+            <path d="M0 112 L132 8 Q140 2 148 8 L280 112 Z" fill="url(#tev-flap)"/>
+            <path d="M0 112 L132 8 Q140 2 148 8 L280 112" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+            <path d="M0 112 H280" stroke="rgba(0,0,0,.3)" stroke-width="1"/>
+          </svg>
+          <!-- 앞면: V자 주머니 (카드보다 앞) -->
+          <svg class="teaser-env-front" viewBox="0 0 280 262" aria-hidden="true">
+            <path d="M0 112 L140 146 L280 112 V254 Q280 262 272 262 H8 Q0 262 0 254 Z" fill="#4A463E"/>
+            <path d="M0 112 L140 146 L280 112" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+            <path d="M6 258 L118 150" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <path d="M274 258 L162 150" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <text x="140" y="214" text-anchor="middle" font-size="22" letter-spacing="5" fill="#E7DCC2">R.S.V.P</text>
+          </svg>
+        </div>
+      </div>
+      <button type="button" class="btn-primary" style="display:block; width:100%; text-align:center; margin-top:16px;" onclick="openModal()">
+        <span class="ko-inline">참석 여부 남기기</span><span class="en-inline">Let us know</span>
+      </button>
+    </div>
+    <div id="modalBodyRsvp" style="display:none">
+      <form name="rsvp" id="rsvpForm" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="rsvp-form">
+        <input type="hidden" name="form-name" value="rsvp" />
+        <p class="hp-field"><label>이 칸은 비워두세요<input name="bot-field" /></label></p>
+
+        <label class="f-label"><span class="ko-inline">신랑측 · 신부측</span><span class="en-inline">Groom's side · Bride's side</span> <span class="req">*</span></label>
+        <input type="hidden" name="구분" id="sideValue" required>
+        <div class="f-toggle" id="sideToggle">
+          <button type="button" class="f-toggle-btn" data-value="신랑측">
+            <span class="ko-inline">신랑측</span><span class="en-inline">Groom's side</span>
+          </button>
+          <button type="button" class="f-toggle-btn" data-value="신부측">
+            <span class="ko-inline">신부측</span><span class="en-inline">Bride's side</span>
+          </button>
+        </div>
+
+        <label class="f-label"><span class="ko-inline">참석 여부</span><span class="en-inline">Attendance</span><span class="req">*</span></label>
+        <input type="hidden" name="참석여부" id="attendValue" required>
+        <div class="f-toggle" id="attendToggle">
+          <button type="button" class="f-toggle-btn" data-value="예">
+            <span class="ko-inline">참석할게요</span><span class="en-inline">Yes I'll attend</span>
+          </button>
+          <button type="button" class="f-toggle-btn" data-value="아니요">
+            <span class="ko-inline">참석이 어려워요</span><span class="en-inline">No I won't be able to attend</span>
+          </button>
+        </div>
+
+        <label class="f-label"><span class="ko-inline">성함</span><span class="en-inline">Name</span><span class="req">*</span></label>
+        <input type="text" name="성함" required class="f-input">
+
+        <label class="f-label"><span class="ko-inline">참석 인원</span><span class="en-inline">How many are you bringing?</span><span class="req">*</span></label>
+        <input type="number" name="인원" min="1" required class="f-input">
+
+        <label class="f-label"><span class="ko-inline">음식 (알레르기) 관련 요청 사항</span><span class="en-inline">Dietary requirement</span><span class="f-optional">(<span class="ko-inline">선택</span><span class="en-inline">optional</span>)</span></label>
+        <input type="text" name="알레르기" class="f-input" data-ph-ko="특별한 요청 사항이 없다면 비워두셔도 됩니다" data-ph-en="Leave blank if none">
+
+        <div class="f-divider"></div>
+
+        <label class="f-label"><span class="ko-inline">Pre-After Party 참석 의향이 있으신가요?</span><span class="en-inline">Will you be interested in a Pre-After party?</span></label>
+        <p class="f-note">
+          <span class="ko-inline">결혼식이 가족 중심으로 진행되는 만큼, 저희와 함께해 주시는 친구들을 위해 작은 모임을 따로 마련하려고 합니다.<br>
+            <br>해외에서 혼자 오시는 분들, 한국 결혼식이 궁금하신 분들, 또는 새로운 사람들과 만나고 싶은 분들 모두 편하게 어울리며 서로를 알아가고, 한국 결혼식에 대해서도 조금씩 알아갈 수 있는 즐거운 시간이 되었으면 합니다.</span>
+          <span class="en-inline">Since the wedding ceremony will be more of a family occasion, we wanted to organize a little get-together for our friends who are joining us on our special day.<br>
+            <br>Whether you're coming from abroad on your own, curious about Korean wedding traditions, or simply looking to meet new people, we'd love to bring everyone together for a relaxed time to connect, learn a little about Korean weddings, and get to know one another.</span>
+        </p>
+        <input type="hidden" name="pre_after_party" id="preAfterValue">
+        <div class="f-toggle" id="preAfterToggle">
+          <button type="button" class="f-toggle-btn" data-value="예">
+            <span class="ko-inline">관심있어요</span><span class="en-inline">I'm interested!</span>
+          </button>
+          <button type="button" class="f-toggle-btn" data-value="아니요">
+            <span class="ko-inline">참석이 어려워요</span><span class="en-inline">Can't make it</span>
+          </button>
+        </div>
+
+        <div id="preAfterExtra" style="display:none">
+          <label class="f-label"><span class="ko-inline">참석 의향이 있으시다면 언제가 편하신가요?</span><span class="en-inline">When would be best for you?</span></label>
+          <div class="f-checklist">
+            <label class="f-check">
+              <input type="checkbox" name="pre_after_시간대" value="결혼식 전날(금요일) 저녁">
+              <span class="ko-inline">12월 17일(금) — 결혼식 전날 저녁</span><span class="en-inline">Friday, 17 December — Evening before the wedding</span>
+            </label>
+            <label class="f-check">
+              <input type="checkbox" name="pre_after_시간대" value="결혼식 3일전(수요일) 저녁">
+              <span class="ko-inline">12월 15일(수) — 결혼식 3일 전 저녁</span><span class="en-inline">Wednesday, 15 December — Evening</span>
+            </label>
+            <label class="f-check">
+              <input type="checkbox" name="pre_after_시간대" value="결혼식 일주일전 토요일(오전)">
+              <span class="ko-inline">12월 11일(토) 오전</span><span class="en-inline">Saturday, 11 December — Morning</span>
+            </label>
+            <label class="f-check">
+              <input type="checkbox" name="pre_after_시간대" value="결혼식 일주일전 토요일(오후)">
+              <span class="ko-inline">12월 11일(토) 오후</span><span class="en-inline">Saturday, 11 December — Afternoon</span>
+            </label>
+            <label class="f-check">
+              <input type="checkbox" name="pre_after_시간대" value="기타" id="otherTimeCheck">
+              <span class="ko-inline">기타</span><span class="en-inline">Other</span>
+            </label>
+            <div id="otherTimeExtra" style="display:none; margin-top:8px;">
+              <input type="text" name="pre_after_시간대_기타" class="f-input" data-ph-ko="직접 입력해주세요" data-ph-en="Please specify">
+            </div>
+          </div>
+
+          <label class="f-label"><span class="ko-inline">참석 인원</span><span class="en-inline">How many are you bringing?</span></label>
+          <input type="number" name="pre_after_인원" min="1" class="f-input">
+
+          <label class="f-label"><span class="ko-inline">음식 알레르기</span><span class="en-inline">Dietary requirement</span>(<span class="ko-inline">선택</span><span class="en-inline">optional</span>)</span></label>
+          <input type="text" name="pre_after_dietary" class="f-input">
+        </div>
+
+        <div class="f-divider"></div>
+
+        <label class="f-label"><span class="ko-inline">전달사항</span><span class="en-inline">Anything you'd like to share?</span>
+          <span class="f-optional">(<span class="ko-inline">선택</span><span class="en-inline">optional</span>)</span></label>
+        <textarea name="전달사항" class="f-input f-textarea" rows="3"></textarea>
+
+        <button type="submit" class="f-submit">
+          <span class="ko-inline">제출하기</span><span class="en-inline">Submit</span>
+        </button>
+        <p class="f-error" id="formError" style="display:none">제출 중 문제가 발생했어요. 다시 시도해주세요.</p>
+      </form>
+      <div id="rsvpThanks" style="display:none" class="f-thanks">
+        <p class="ko-inline">소중한 답변 감사합니다 🤍<br>결혼식날 뵙겠습니다!</p>
+        <p class="en-inline">Thank you for your response 🤍<br>See you at the wedding!</p>
+      </div>
+    </div>
+    <div id="modalBodyDday" style="display:none">
+      <div class="dday-mini">
+        <div class="u"><div class="n" id="mcD">00</div><div class="l ko-inline">일</div><div class="l en-inline">D</div></div>
+        <div class="u"><div class="n" id="mcH">00</div><div class="l ko-inline">시</div><div class="l en-inline">H</div></div>
+        <div class="u"><div class="n" id="mcM">00</div><div class="l ko-inline">분</div><div class="l en-inline">M</div></div>
+        <div class="u"><div class="n" id="mcS">00</div><div class="l ko-inline">초</div><div class="l en-inline">S</div></div>
+      </div>
+      <img class="map-embed ko-inline" src="assets/direction_kr.jpeg" alt="오시는 길 약도">
+      <img class="map-embed en-inline" src="assets/direction_en.jpeg" alt="Map">
+      <div class="map-btns" style="margin-top:12px">
+        <a class="map-btn" target="_blank" rel="noopener" href="https://map.naver.com/p/search/%EB%8D%94%EC%B1%84%ED%94%8C%EC%95%B3%EB%85%BC%ED%98%84">
+          <img class="map-ico" src="https://play-lh.googleusercontent.com/URf_NsdR_zz2jAQFWHQf2ArOPdAa7n0Exolkm0h4ydFvmUMxG4puOam19EahHIge16Ojl0_jNRnoH1LRVad_SQ=w240-h480-rw" alt="">네이버지도</a>
+        <a class="map-btn" target="_blank" rel="noopener" href="https://map.kakao.com/link/search/%EB%8D%94%EC%B1%84%ED%94%8C%EC%95%B3%EB%85%BC%ED%98%84">
+          <img class="map-ico" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS4mtNHvN7KddkKUVptXE_BZ2R6i_ul_9IYQTAAbMMQQ&s=10" alt="">카카오맵</a>
+        <a class="map-btn" href="https://tmap.life/cc74b89b">
+          <img class="map-ico" src="https://play-lh.googleusercontent.com/49iwmmjM20TL_OlZucUw1y3xxA3ZmjO7ZDV_8vcGi8Ef4yq0naS7rLantFLxyUDUCBMBTzuROn1kOWvbPZAo" alt="">티맵</a>
+      </div>
+    </div>
+    <button type="button" class="modal-dismiss" onclick="closeModal()">
+      <span class="ko-inline">나중에 볼게요</span><span class="en-inline">Maybe later</span>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ======= CONFIG — 여기 값들만 바꿔서 쓰시면 됩니다 ======= */
+  var WEDDING_DATE_KST   = '2027-12-18';                 // 예식일 (KST 날짜, YYYY-MM-DD)
+  var CEREMONY_ISO       = '2027-12-18T17:30:00+09:00';  // 예식 정확한 시각(카운트다운 기준)
+  var GUEST_ALBUM_URL    = 'https://photos.app.goo.gl/zZSwK7CMG2rqZPuj8';  // TODO: 구글포토 공유앨범 링크를 여기에 붙여넣으세요
+
+
+  /* ======= 공통: 현재 언어 · 날짜 도우미 (아래 여러 섹션이 같이 씀) ======= */
+  var currentLang = 'ko';
+  var targetMs = new Date(CEREMONY_ISO).getTime();
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function todayKST(){
+    try{
+      return new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Seoul'}).format(new Date());
+    }catch(e){
+      var n = new Date(); return n.getFullYear()+'-'+pad(n.getMonth()+1)+'-'+pad(n.getDate());
+    }
+  }
+  var isDdayOrAfter = todayKST() >= WEDDING_DATE_KST;   // 예식 당일 이후면 true (RSVP → 당일 안내로 바뀜)
+
+
+  /* ======= 언어 전환 (한글 / ENG) ======= */
+  window.setLang = function(lang){
+    currentLang = lang;
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.getElementById('btnKo').classList.toggle('active', lang==='ko');
+    document.getElementById('btnEn').classList.toggle('active', lang==='en');
+    try{ localStorage.setItem('wb_lang', lang); }catch(e){}
+    renderCalendar();
+    refreshGuestSnap();
+    updateFloatingLabel();
+  };
+
+
+  /* ======= HERO: 오프닝 슬라이드쇼 → 표지 ======= */
+  var captions = [
+    {ko:'매번 집 앞까지만 데려다주던 길을', en:'From doorsteps to bedside,'},
+    {ko:'이제는 같이 들어가려 합니다.', en:'No more goodbyes, just goodnights'},
+    {ko:'저희의 뜻깊은 시작에 초대합니다.', en:'Join us for our next chapter.'}
+  ];
+  var heroIdx = 0;
+  var slides = document.querySelectorAll('.hero-slide');
+  var dots = document.querySelectorAll('.hero-dots span');
+  var capKo = document.getElementById('heroCaption');
+  var capEn = document.getElementById('heroCaptionEn');
+  var heroDuration = 2500;
+  var introLocked = true;
+  var heroTimer = setTimeout(nextHero, heroDuration);
+
+  function showHero(i){
+    slides.forEach(function(s,idx){ s.classList.toggle('active', idx===i); });
+    dots.forEach(function(d,idx){ d.classList.toggle('active', idx===i); });
+    capKo.textContent = captions[i].ko;
+    capEn.textContent = captions[i].en;
+    document.querySelector('.hero-caption').classList.toggle('cap-shift-up', i===0);
+  }
+
+  function lockScroll(lock){
+    document.documentElement.classList.toggle('intro-lock', lock);
+    document.body.classList.toggle('intro-lock', lock);
+  }
+  lockScroll(true);
+
+  function finishIntro(){
+    if(!introLocked) return;
+    introLocked = false;
+    clearTimeout(heroTimer);
+    document.getElementById('coverLayer').classList.add('show');
+    lockScroll(false);
+    setTimeout(function(){ maybeAutoOpenModal(); }, 600);
+  }
+
+  function nextHero(){
+    var wasLast = (heroIdx === slides.length - 1);
+    if(introLocked && wasLast){
+      finishIntro();
+      return;
+    }
+    heroIdx = (heroIdx+1) % slides.length;
+    showHero(heroIdx);
+    heroTimer = setTimeout(nextHero, heroDuration);
+  }
+
+  window.goToHero = function(i){
+    heroIdx = i;
+    showHero(i);
+    clearTimeout(heroTimer);
+    if(introLocked){
+      heroTimer = setTimeout(nextHero, heroDuration);
+    }
+  };
+
+  var heroEl = document.getElementById('hero');
+  function skipIntro(e){
+    if(e.target.closest('.hero-dots')) return;
+    finishIntro();
+  }
+  heroEl.addEventListener('click', skipIntro, {passive:true});
+  heroEl.addEventListener('touchstart', skipIntro, {passive:true});
+  heroEl.addEventListener('wheel', finishIntro, {passive:true});
+
+
+  /* ======= WEDDING REGISTRY: 계좌번호 오버레이 · 복사 ======= */
+  window.openRegistry = function(){
+    document.getElementById('registryOverlay').classList.add('show');
+  };
+  window.closeRegistry = function(){
+    document.getElementById('registryOverlay').classList.remove('show');
+  };
+  window.copyAccountIcon = function(btn, num){
+    var done = function(){
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.classList.remove('copied'); }, 1400);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(num).then(done)['catch'](function(){ fallbackCopy(num, done); });
+    } else { fallbackCopy(num, done); }
+  };
+  function fallbackCopy(text, cb){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      cb();
+    }catch(e){}
+  }
+
+
+  /* ======= GALLERY: 사진 더보기 · 확대 보기(라이트박스) ======= */
+  var galleryMoreBtn = document.getElementById('galleryMoreBtn');
+  if(galleryMoreBtn){
+    galleryMoreBtn.addEventListener('click', function(){
+      document.getElementById('galleryGrid').classList.add('expanded');
+      galleryMoreBtn.classList.add('hidden');
+      var fade = document.getElementById('galleryFade');
+      if(fade) fade.style.display = 'none';
+    });
+  }
+
+  function openLightbox(src){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('show');
+  }
+  window.closeLightbox = function(){
+    document.getElementById('lightbox').classList.remove('show');
+  };
+  document.querySelectorAll('#galleryGrid .g-item img').forEach(function(img){
+    img.addEventListener('click', function(){
+      openLightbox(this.getAttribute('data-full') || this.src);
+    });
+  });
+
+
+  /* ======= SAVE THE DATE: 달력 · 카운트다운 ======= */
+  var DOW_KO = ['일','월','화','수','목','금','토'];
+  var DOW_EN = ['S','M','T','W','T','F','S'];
+  function renderCalendar(){
+    var grid = document.getElementById('calGrid');
+    grid.innerHTML = '';
+    var dow = currentLang==='ko' ? DOW_KO : DOW_EN;
+    dow.forEach(function(d){
+      var el = document.createElement('div');
+      el.className='cal-dow'; el.textContent=d;
+      grid.appendChild(el);
+    });
+    var year=2027, month=11; // December (0-indexed)
+    var firstDow = new Date(year, month, 1).getDay();
+    var daysInMonth = new Date(year, month+1, 0).getDate();
+    for(var i=0;i<firstDow;i++){
+      var e = document.createElement('div'); e.className='cal-day empty'; grid.appendChild(e);
+    }
+    for(var d=1; d<=daysInMonth; d++){
+      var el = document.createElement('div');
+      el.className = 'cal-day' + (d===18 ? ' dday' : '');
+      el.textContent = d;
+      grid.appendChild(el);
+    }
+  }
+
+  function tickCountdown(){
+    var diff = targetMs - Date.now();
+    if(diff < 0) diff = 0;
+    var s = Math.floor(diff/1000);
+    var d = Math.floor(s/86400); s -= d*86400;
+    var h = Math.floor(s/3600); s -= h*3600;
+    var m = Math.floor(s/60); s -= m*60;
+    document.getElementById('cdD').textContent = pad(d);
+    document.getElementById('cdH').textContent = pad(h);
+    document.getElementById('cdM').textContent = pad(m);
+    document.getElementById('cdS').textContent = pad(s);
+    if(document.getElementById('mcD')){            // 참석 모달 안의 D-day 카운트다운
+      document.getElementById('mcD').textContent = pad(d);
+      document.getElementById('mcH').textContent = pad(h);
+      document.getElementById('mcM').textContent = pad(m);
+      document.getElementById('mcS').textContent = pad(s);
+    }
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+  renderCalendar();
+
+
+  /* ======= RSVP: 참석 모달 (예식 전 = 구글폼 / 예식 당일부터 = 안내) · 플로팅 버튼 ======= */
+  var backdrop = document.getElementById('modalBackdrop');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalDesc = document.getElementById('modalDesc');
+  var bodyRsvp = document.getElementById('modalBodyRsvp');
+  var bodyDday = document.getElementById('modalBodyDday');
+  var rsvpForm = document.getElementById('rsvpForm');
+  var otherTimeCheck = document.getElementById('otherTimeCheck');
+  var otherTimeExtra = document.getElementById('otherTimeExtra');
+  if(otherTimeCheck){
+    otherTimeCheck.addEventListener('change', function(){
+      otherTimeExtra.style.display = this.checked ? 'block' : 'none';
+    });
+  }
+  if(rsvpForm){
+    rsvpForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var missingToggle = null;
+      document.querySelectorAll('.f-toggle').forEach(function(group){
+        var hiddenInput = group.previousElementSibling;
+        if(hiddenInput && hiddenInput.hasAttribute('required') && !hiddenInput.value){
+          group.classList.add('f-toggle-error');
+          if(!missingToggle) missingToggle = group;
+        }
+      });
+      if(missingToggle){
+        missingToggle.scrollIntoView({behavior:'smooth', block:'center'});
+        return;
+      }
+      var submitBtn = rsvpForm.querySelector('.f-submit');
+      var errorMsg = document.getElementById('formError');
+      submitBtn.disabled = true;
+      errorMsg.style.display = 'none';
+      var encoded = new URLSearchParams(new FormData(rsvpForm)).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: encoded
+      }).then(function(res){
+        if(!res.ok) throw new Error('submit failed');
+        rsvpForm.style.display = 'none';
+        document.getElementById('rsvpThanks').style.display = 'block';
+      }).catch(function(){
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
+  function buildForm(){
+    if(formBuilt) return;
+    if(GOOGLE_FORM_URL){
+      var iframe = document.createElement('iframe');
+      iframe.className='form-frame'; iframe.src = GOOGLE_FORM_URL; iframe.loading='lazy';
+      formWrap.appendChild(iframe);
+    } else {
+      var box = document.createElement('div');
+      box.className='form-fallback';
+      box.innerHTML =
+        '<span class="ko-inline">RSVP 구글폼 링크가 아직 연결되지 않았어요.<br>폼을 만드신 후 코드 상단 GOOGLE_FORM_URL 값에 붙여넣어 주세요.</span>'+
+        '<span class="en-inline">The RSVP Google Form isn\'t connected yet.<br>Once it\'s ready, add the link to GOOGLE_FORM_URL in the code.</span>';
+      formWrap.appendChild(box);
+    }
+    formBuilt = true;
+  }
+
+  window.openModal = function(showTeaser){
+    if(isDdayOrAfter){
+      modalTitle.textContent = (currentLang==='ko') ? '오늘, 저희 결혼식입니다' : "It's the big day!";
+      modalDesc.textContent = (currentLang==='ko') ? '오시는 길 안내드릴게요.' : 'Here\'s everything you need to find us.';
+      bodyRsvp.style.display='none'; document.getElementById('modalBodyTeaser').style.display='none'; bodyDday.style.display='block';
+    } else if(showTeaser){
+      modalTitle.textContent = (currentLang==='ko') ? '참석 여부 알려주세요' : 'Will you join us?';
+      modalDesc.textContent = '';
+      bodyRsvp.style.display='none'; bodyDday.style.display='none'; document.getElementById('modalBodyTeaser').style.display='block';
+    } else {
+      modalTitle.textContent = (currentLang==='ko') ? '참석 여부 알려주세요' : 'Will you join us?';
+      modalDesc.textContent = (currentLang==='ko') ? '아래 양식에 참석 여부와 인원을 남겨주시면 감사하겠습니다.' : 'Please let us know if you’ll be joining us and how many are coming';
+      bodyRsvp.style.display='block'; bodyDday.style.display='none'; document.getElementById('modalBodyTeaser').style.display='none';
+    }
+    backdrop.classList.add('show');
+  };
+  window.closeModal = function(){
+    backdrop.classList.remove('show');
+    try{ sessionStorage.setItem('wb_modal_dismissed','1'); }catch(e){}
+    document.getElementById('floatReopen').style.display='block';
+    updateFloatingLabel();
+  };
+  backdrop.addEventListener('click', function(e){ if(e.target===backdrop) closeModal(); });
+
+  function updateFloatingLabel(){
+    var lbl = document.getElementById('floatReopenLabel');
+    if(!lbl) return;
+    if(isDdayOrAfter) lbl.textContent = (currentLang==='ko') ? '예식 안내' : 'Ceremony Info';
+    else lbl.textContent = 'RSVP';
+  }
+
+  /* 오프닝이 끝나면 세션당 한 번만 자동으로 열림 (이미 닫은 적 있으면 플로팅 버튼만 표시) */
+  var alreadyShown = false;
+  try{ alreadyShown = sessionStorage.getItem('wb_modal_dismissed') === '1'; }catch(e){}
+  if(alreadyShown){
+    document.getElementById('floatReopen').style.display='block';
+    updateFloatingLabel();
+  }
+  function maybeAutoOpenModal(){
+    if(!alreadyShown) openModal(true);   // ← true만 추가
+  }
+
+
+  /* ======= GUEST SNAP: 사진 올리기 버튼 (예식 당일부터 활성화) ======= */
+  var snapBtn = document.getElementById('snapBtn');
+  function refreshGuestSnap(){
+    if(isDdayOrAfter){
+      document.getElementById('snapCountdown').textContent = '';
+      if(GUEST_ALBUM_URL){
+        snapBtn.classList.remove('disabled');
+        snapBtn.href = GUEST_ALBUM_URL;
+        snapBtn.target = '_blank'; snapBtn.rel = 'noopener';
+        snapBtn.onclick = null;
+        document.querySelectorAll('.snap-soon').forEach(function(el){ el.style.display = 'none'; });   // ← 추가: 예식 당일부터 둘째 문장 숨김
+      } else {
+        snapBtn.classList.add('disabled');
+        snapBtn.onclick = function(){ return false; };
+        document.getElementById('snapDescKo').innerHTML = '앨범 링크를 아직 등록하지 않았어요.<br>곧 사진을 나눌 수 있도록 준비할게요.';
+        document.getElementById('snapDescEn').innerHTML = 'The album link hasn\'t been added yet.<br>Check back again soon.';
+      }
+    } else {
+      snapBtn.classList.add('disabled');
+      snapBtn.onclick = function(){ return false; };
+      var diff = Math.max(0, targetMs - Date.now());
+      var dLeft = Math.ceil(diff/86400000);
+      document.getElementById('snapCountdown').textContent =
+        (currentLang==='ko') ? ('예식일까지 D-' + dLeft) : (dLeft + ' days until the wedding');
+    }
+  }
+  refreshGuestSnap();
+  setInterval(refreshGuestSnap, 30000);
+
+    /* ======= BGM: 배경 음악 (첫 터치 때 시작 · 버튼으로 끄고 켜기) ======= */
+    (function(){
+      var bgm = document.getElementById('bgm');
+      var bgmBtn = document.getElementById('bgmBtn');
+      if(!bgm || !bgmBtn) return;               // HTML을 지워도 사이트의 다른 기능은 멈추지 않음
+
+      var BGM_VOLUME = 0.5;                     // 0 ~ 1 (아이폰은 이 값을 무시하고 기기 볼륨을 따름)
+      var wanted = true;                        // 방문자가 직접 끈 적이 있으면 false
+      try{ if(localStorage.getItem('wb_bgm') === 'off') wanted = false; }catch(e){}
+
+      function render(){
+        var on = !bgm.paused;
+        bgmBtn.classList.toggle('active', on);
+        bgmBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+      function fadeIn(){
+        var v = 0; bgm.volume = 0;
+        var t = setInterval(function(){
+          v += 0.05;
+          if(bgm.paused || v >= BGM_VOLUME){ bgm.volume = BGM_VOLUME; clearInterval(t); }
+          else { bgm.volume = v; }
+        }, 100);
+      }
+      function play(){                          // 성공하면 true, 브라우저가 막으면 false
+        bgm.volume = 0;
+        var p = bgm.play();
+        if(!p || !p.then){ render(); return Promise.resolve(true); }
+        return p.then(function(){ fadeIn(); render(); return true; },
+                      function(){ render(); return false; });
+      }
+
+      /* 첫 터치(클릭·키 입력)에서 시작: 브라우저는 소리 있는 자동재생을 막기 때문 */
+      var EVENTS = ['click', 'touchend', 'keydown'];
+      function arm(on){
+        EVENTS.forEach(function(ev){
+          if(on) document.addEventListener(ev, firstGesture, true);
+          else document.removeEventListener(ev, firstGesture, true);
+        });
+      }
+      function firstGesture(e){
+        if(e.target && e.target.closest && e.target.closest('#bgmBtn')) return;   // 버튼을 누른 거면 버튼 쪽에서 처리
+        play().then(function(ok){ if(ok) arm(false); });                          // 막혔으면(스크롤 중이던 손가락 등) 다음 터치에 다시 시도
+      }
+      if(wanted) arm(true);
+
+      /* 버튼: 끄고 켜기 (끈 선택은 기억해서 다음 방문 때도 자동 시작하지 않음) */
+      bgmBtn.addEventListener('click', function(){
+        if(bgm.paused){
+          wanted = true;
+          try{ localStorage.removeItem('wb_bgm'); }catch(e){}
+          play().then(function(ok){ if(ok) arm(false); });
+        } else {
+          wanted = false;
+          try{ localStorage.setItem('wb_bgm', 'off'); }catch(e){}
+          bgm.pause();
+          arm(false);
+        }
+      });
+      bgm.addEventListener('play', render);
+      bgm.addEventListener('pause', render);
+
+      /* 다른 앱/탭으로 나가면 멈췄다가, 돌아오면 이어서 재생 */
+      var wasPlaying = false;
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden){ wasPlaying = !bgm.paused; bgm.pause(); }
+        else if(wasPlaying && wanted){ play(); }
+      });
+    })();
+  
+  /* 모든 .f-toggle 그룹을 한 번에 자동으로 연결 */
+  document.querySelectorAll('.f-toggle').forEach(function(group){
+    var hiddenInput = group.previousElementSibling;
+    if(!hiddenInput || hiddenInput.type !== 'hidden') return;
+    group.querySelectorAll('.f-toggle-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        group.querySelectorAll('.f-toggle-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        hiddenInput.value = btn.getAttribute('data-value');
+        group.classList.remove('f-toggle-error');
+        if(group.id === 'preAfterToggle'){
+          var extra = document.getElementById('preAfterExtra');
+          if(extra) extra.style.display = (hiddenInput.value === '예') ? 'block' : 'none';
+        }
+      });
+    });
+  });
+
+  function applyFormLang(){
+    var form = document.getElementById('rsvpForm');
+    if(!form) return;
+    var ko = !document.body.classList.contains('lang-en');      // 지금 언어(본문 클래스 기준)
+    form.querySelectorAll('option[data-ko]').forEach(function(opt){
+      opt.textContent = ko ? opt.getAttribute('data-ko') : opt.getAttribute('data-en');
+    });
+    form.querySelectorAll('[data-ph-ko]').forEach(function(el){
+      el.placeholder = ko ? el.getAttribute('data-ph-ko') : el.getAttribute('data-ph-en');
+    });
+  }
+  applyFormLang();
+  /* 언어가 바뀔 때마다(본문 class 변화) 다시 적용 */
+  new MutationObserver(applyFormLang).observe(document.body, {attributes:true, attributeFilter:['class']});
+
+  formWrap.innerHTML = '…폼 HTML…';   // 폼을 만들어 넣는 기존 코드
+  applyFormLang();                    // ← 이 줄 추가
+
+  /* ======= 초기화 — 저장된 언어 적용 (반드시 맨 마지막에 실행) ======= */
+  (function initLang(){
+    var saved = 'ko';
+    try{ saved = localStorage.getItem('wb_lang') || 'ko'; }catch(e){}
+    setLang(saved);
+  })();
+})();
+</script>
+</body>
+</html>
