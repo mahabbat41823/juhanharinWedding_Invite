@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://juhanharinwedding.netlify.app/">
-<meta property="og:image" content="assets/BOM00122.jpg">
-<meta property="og:title" content="이주한 ♥ 오하린 결혼식에 초대합니다">
-<meta property="og:description" content="2027.12.18(토) 5:30PM • 더채플앳논현 6F 라포레홀">
+<meta property="og:site_name" content="Juhan & Harin's Wedding Invitation">
+<meta property="og:title" content="Juhan & Harin's Wedding Invitation">
+<meta property="og:description" content="18th December 2027, 5:30 PM · The Chapel at Nonhyeon · 6F, La Forêt Hall">
+<meta property="og:image" content="https://juhanharinwedding.netlify.app/assets/BOM00122.jpg">
   
 <title>이주한 · 오하린 결혼합니다</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -541,6 +540,11 @@
     setTimeout(function(){ if(!window.__revealReady) root.classList.remove('reveal-on'); }, 4000);
   }catch(e){ document.documentElement.classList.remove('reveal-on'); }
 })();
+</script>
+<script
+  src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.4/kakao.min.js"
+  integrity="sha384-BGX7Wb16GmRFagri4bLJV2DgipVZaU2AI812GZtHtHzzDQJnfHasDXN5houxv45w"
+  crossorigin="anonymous">
 </script>
 </head>
 <body class="intro-lock">
@@ -1303,6 +1307,9 @@
   </div>
 </div>
 
+<button type="button" id="kakao-share-button">
+  카카오톡으로 청첩장 공유하기
+</button>
 <script>
 (function(){
   /* ======= CONFIG — 여기 값들만 바꿔서 쓰시면 됩니다 ======= */
@@ -1758,6 +1765,25 @@
     setLang(saved);
   })();
 })();
+</script>
+
+<script>
+  // 카카오 SDK 초기화
+  if (!Kakao.isInitialized()) {
+    Kakao.init('09f213a2c792e65c0b2bd9a03b60cf31');
+  }
+
+  // 공유 버튼 연결
+  document
+    .getElementById('kakao-share-button')
+    .addEventListener('click', function () {
+      Kakao.Share.sendCustom({
+        templateId: 138437
+      }).catch(function (error) {
+        console.error('카카오톡 공유 오류:', error);
+        alert('공유에 실패했어요. 잠시 후 다시 시도해 주세요.');
+      });
+    });
 </script>
 </body>
 </html>
