@@ -549,6 +549,13 @@
 </script>
 </head>
 <body class="intro-lock">
+  <script>
+  (function(){
+    var lang = (navigator.language || 'en').toLowerCase().startsWith('ko') ? 'ko' : 'en';
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.documentElement.lang = lang;
+  })();
+  </script>
 <div class="lang-switch" role="group" aria-label="Language">
   <button type="button" id="btnKo" class="active" onclick="setLang('ko')">한글</button>
   <button type="button" id="btnEn" onclick="setLang('en')">ENG</button>
@@ -712,6 +719,36 @@
       </div>
     </div>
   </div>
+
+  
+  <!-- ============ CONTACT ============ -->
+  <section class="contact-section center">
+    <div class="section-heading">
+      <span class="heading-line"></span>
+      <span class="heading-label">CONTACT</span>
+      <span class="heading-line"></span>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-link" href="JUHAN_KAKAO_PROFILE_URL" target="_blank" rel="noopener noreferrer" aria-label="주한에게 연락하기">
+        <span class="contact-name">
+          <span class="ko-inline">주한</span>
+          <span class="en-inline">Juhan</span>
+          <span class="contact-emoji">💬</span>
+        </span>
+      </a>
+
+      <div class="contact-divider"></div>
+
+      <a class="contact-link" href="http://qr.kakao.com/talk/.gSGLg9K6uPrXBAYPXkSd91HSd0-" target="_blank" rel="noopener noreferrer" aria-label="하린에게 연락하기">
+        <span class="contact-name">
+          <span class="ko-inline">하린</span>
+          <span class="en-inline">Harin</span>
+          <span class="contact-emoji">💬</span>
+        </span>
+      </a>
+    </div>
+  </section>
 
   <!-- ============ GALLERY ============ -->
   <section class="pad-sm">
@@ -1338,9 +1375,9 @@
   window.setLang = function(lang){
     currentLang = lang;
     document.body.classList.toggle('lang-en', lang === 'en');
+    document.documentElement.lang = lang;
     document.getElementById('btnKo').classList.toggle('active', lang==='ko');
     document.getElementById('btnEn').classList.toggle('active', lang==='en');
-    try{ localStorage.setItem('wb_lang', lang); }catch(e){}
     renderCalendar();
     refreshGuestSnap();
     updateFloatingLabel();
@@ -1378,11 +1415,19 @@
 
   function finishIntro(){
     if(!introLocked) return;
+  
     introLocked = false;
     clearTimeout(heroTimer);
-    document.getElementById('coverLayer').classList.add('show');
-    lockScroll(false);
-    setTimeout(function(){ maybeAutoOpenModal(); }, 600);
+  
+    var cover = document.getElementById('coverLayer');
+    cover.classList.add('show');
+  
+    // 커버 이미지의 페이드인 애니메이션(1.2초)이
+    // 완전히 끝난 다음 스크롤 잠금 해제
+    setTimeout(function(){
+      lockScroll(false);
+      maybeAutoOpenModal();
+    }, 1250);
   }
 
   function nextHero(){
@@ -1404,15 +1449,6 @@
       heroTimer = setTimeout(nextHero, heroDuration);
     }
   };
-
-  var heroEl = document.getElementById('hero');
-  function skipIntro(e){
-    if(e.target.closest('.hero-dots')) return;
-    finishIntro();
-  }
-  heroEl.addEventListener('click', skipIntro, {passive:true});
-  heroEl.addEventListener('touchstart', skipIntro, {passive:true});
-  heroEl.addEventListener('wheel', finishIntro, {passive:true});
 
 
   /* ======= WEDDING REGISTRY: 계좌번호 오버레이 · 복사 ======= */
@@ -1442,6 +1478,22 @@
   }
 
 
+  
+  /* =====================================================================
+     CONTACT — 신랑·신부 연락처
+     ===================================================================== */
+  .contact-section{padding:36px 32px 40px; background:var(--bg);}
+  .contact-section .section-heading{margin-bottom:24px;}
+  .contact-grid{display:flex; align-items:center; justify-content:center; max-width:360px; margin:0 auto;}
+  .contact-link{flex:1; display:flex; align-items:center; justify-content:center; padding:10px 4px; color:var(--ink); text-decoration:none; -webkit-tap-highlight-color:transparent;
+  }
+  .contact-name{display:flex; align-items:center; justify-content:center; gap:7px; font-size:16px; font-weight:500; letter-spacing:.01em;}
+  body.lang-en .contact-name{font-size:21px;}
+  .contact-emoji{font-size:15px; line-height:1; }
+  .contact-divider{width:1px; height:30px; background:var(--line); flex-shrink:0; }
+  .contact-link:active{opacity:.6;}
+
+  
   /* ======= GALLERY: 사진 더보기 · 확대 보기(라이트박스) ======= */
   var galleryMoreBtn = document.getElementById('galleryMoreBtn');
   if(galleryMoreBtn){
@@ -1760,12 +1812,15 @@
   applyFormLang();                    // ← 이 줄 추가
 
   /* ======= 초기화 — 저장된 언어 적용 (반드시 맨 마지막에 실행) ======= */
-  (function initLang(){
-    var saved = 'ko';
-    try{ saved = localStorage.getItem('wb_lang') || 'ko'; }catch(e){}
-    setLang(saved);
+  ((function initLang(){
+    var browserLang = (navigator.language || 'en').toLowerCase();
+  
+    if(browserLang.startsWith('ko')){
+      setLang('ko');
+    } else {
+      setLang('en');
+    }
   })();
-})();
 </script>
 
 <script>
