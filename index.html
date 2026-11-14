@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://juhanharinwedding.netlify.app/">
@@ -499,6 +500,17 @@
   @media (prefers-reduced-motion: reduce){
     .reveal-on section:not(.hero){opacity:1; transform:none; transition:none; pointer-events:auto;}
   }
+
+  /* CONTACT — 신랑·신부 연락처 */
+  .contact-section{padding:36px 32px 40px; background:var(--bg);}
+  .contact-section .section-heading{margin-bottom:24px;}
+  .contact-grid{display:flex; align-items:center; justify-content:center; max-width:360px; margin:0 auto;}
+  .contact-link{flex:1; display:flex; align-items:center; justify-content:center; padding:10px 4px; color:var(--ink); text-decoration:none; -webkit-tap-highlight-color:transparent;}
+  .contact-name{display:flex; align-items:center; justify-content:center; gap:7px; font-size:16px; font-weight:500; letter-spacing:.01em;}
+  body.lang-en .contact-name{font-size:21px;}
+  .contact-emoji{font-size:15px; line-height:1;}
+  .contact-divider{width:1px; height:30px; background:var(--line); flex-shrink:0;}
+  .contact-link:active{opacity:.6;}
 </style>
 <script>
 (function(){
@@ -730,7 +742,7 @@
     </div>
 
     <div class="contact-grid">
-      <a class="contact-link" href="JUHAN_KAKAO_PROFILE_URL" target="_blank" rel="noopener noreferrer" aria-label="주한에게 연락하기">
+      <a class="contact-link" href="http://qr.kakao.com/talk/wJmseh_Ol92fcOawYWbBKm7MlKQ-" target="_blank" rel="noopener noreferrer" aria-label="주한에게 연락하기">
         <span class="contact-name">
           <span class="ko-inline">주한</span>
           <span class="en-inline">Juhan</span>
@@ -1477,22 +1489,6 @@
     }catch(e){}
   }
 
-
-  
-  /* =====================================================================
-     CONTACT — 신랑·신부 연락처
-     ===================================================================== */
-  .contact-section{padding:36px 32px 40px; background:var(--bg);}
-  .contact-section .section-heading{margin-bottom:24px;}
-  .contact-grid{display:flex; align-items:center; justify-content:center; max-width:360px; margin:0 auto;}
-  .contact-link{flex:1; display:flex; align-items:center; justify-content:center; padding:10px 4px; color:var(--ink); text-decoration:none; -webkit-tap-highlight-color:transparent;
-  }
-  .contact-name{display:flex; align-items:center; justify-content:center; gap:7px; font-size:16px; font-weight:500; letter-spacing:.01em;}
-  body.lang-en .contact-name{font-size:21px;}
-  .contact-emoji{font-size:15px; line-height:1; }
-  .contact-divider{width:1px; height:30px; background:var(--line); flex-shrink:0; }
-  .contact-link:active{opacity:.6;}
-
   
   /* ======= GALLERY: 사진 더보기 · 확대 보기(라이트박스) ======= */
   var galleryMoreBtn = document.getElementById('galleryMoreBtn');
@@ -1808,11 +1804,9 @@
   /* 언어가 바뀔 때마다(본문 class 변화) 다시 적용 */
   new MutationObserver(applyFormLang).observe(document.body, {attributes:true, attributeFilter:['class']});
 
-  formWrap.innerHTML = '…폼 HTML…';   // 폼을 만들어 넣는 기존 코드
-  applyFormLang();                    // ← 이 줄 추가
 
   /* ======= 초기화 — 저장된 언어 적용 (반드시 맨 마지막에 실행) ======= */
-  ((function initLang(){
+  (function initLang(){
     var browserLang = (navigator.language || 'en').toLowerCase();
   
     if(browserLang.startsWith('ko')){
